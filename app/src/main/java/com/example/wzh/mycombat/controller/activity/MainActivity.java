@@ -1,6 +1,5 @@
 package com.example.wzh.mycombat.controller.activity;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -21,7 +20,6 @@ import com.example.wzh.mycombat.controller.fragment.ShopFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class MainActivity extends BaseActivity {
@@ -51,7 +49,6 @@ public class MainActivity extends BaseActivity {
     ImageButton ibShopping;
     @InjectView(R.id.ib_share)
     ImageButton ibShare;
-
     private List<BaseFragment> fragments;
     private BaseFragment tempFragment;
     private int position = 0;
@@ -60,6 +57,15 @@ public class MainActivity extends BaseActivity {
     public int getLayoutId() {
         return R.layout.activity_main;
     }
+
+    @Override
+    public void initView() {
+        super.initView();
+
+
+    }
+
+
 
     @Override
     public void initData() {
@@ -156,10 +162,4 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
-    }
 }

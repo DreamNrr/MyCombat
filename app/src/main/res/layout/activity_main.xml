@@ -6,55 +6,58 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.wzh.mycombat.controller.activity.MainActivity">
-    <include layout="@layout/titlebar">
 
-    </include>
-<FrameLayout
-    android:id="@+id/fraglayout"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1">
+        <include layout="@layout/titlebar" />
 
-</FrameLayout>
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:gravity="center"
-        android:background="#000000"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        <FrameLayout
+            android:id="@+id/fraglayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
+
+        <RadioGroup
+
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#000000"
+            android:gravity="center"
+
+            android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/shop_rb"
                 style="@style/myStyle"
                 android:drawableTop="@drawable/shop_button_select"
-                android:text="商店"/>
+                android:text="商店" />
 
             <RadioButton
                 android:id="@+id/mgz_rb"
                 style="@style/myStyle"
                 android:drawableTop="@drawable/magazine_button_select"
-                android:text="杂志"/>
+                android:text="杂志" />
 
 
             <RadioButton
                 android:id="@+id/daren_rb"
                 style="@style/myStyle"
                 android:drawableTop="@drawable/daren_button_select"
-                android:text="达人"/>
+                android:text="达人" />
 
             <RadioButton
                 android:id="@+id/good_rb"
                 style="@style/myStyle"
                 android:drawableTop="@drawable/good_button_select"
-                android:text="分享"/>
+                android:text="分享" />
 
             <RadioButton
                 android:id="@+id/self_rb"
                 style="@style/myStyle"
                 android:drawableTop="@drawable/self_button_select"
-                android:text="个人"/>
+                android:text="个人" />
 
 
-    </RadioGroup>
+        </RadioGroup>
 
 </LinearLayout>
