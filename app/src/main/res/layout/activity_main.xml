@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.example.wzh.mycombat.controller.activity.MainActivity">
 <FrameLayout
+    android:id="@+id/fraglayout"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1">
