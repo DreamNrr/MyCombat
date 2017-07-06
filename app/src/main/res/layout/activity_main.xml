@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.wzh.mycombat.controller.activity.MainActivity">
+    <include layout="@layout/titlebar">
+
+    </include>
 <FrameLayout
     android:id="@+id/fraglayout"
     android:layout_width="match_parent"

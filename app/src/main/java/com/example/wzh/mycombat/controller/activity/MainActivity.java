@@ -1,10 +1,13 @@
 package com.example.wzh.mycombat.controller.activity;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
@@ -18,6 +21,7 @@ import com.example.wzh.mycombat.controller.fragment.ShopFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class MainActivity extends BaseActivity {
@@ -39,6 +43,14 @@ public class MainActivity extends BaseActivity {
     FrameLayout fraglayout;
     @InjectView(R.id.activity_main)
     LinearLayout activityMain;
+    @InjectView(R.id.tv_title)
+    TextView tvTitle;
+    @InjectView(R.id.ib_search)
+    ImageButton ibSearch;
+    @InjectView(R.id.ib_shopping)
+    ImageButton ibShopping;
+    @InjectView(R.id.ib_share)
+    ImageButton ibShare;
 
     private List<BaseFragment> fragments;
     private BaseFragment tempFragment;
@@ -83,18 +95,23 @@ public class MainActivity extends BaseActivity {
         switch (checked) {
             case R.id.shop_rb:
                 position = 0;
+                tvTitle.setText("商店");
                 break;
             case R.id.mgz_rb:
                 position = 1;
+                tvTitle.setText("杂志");
                 break;
             case R.id.daren_rb:
                 position = 2;
+                tvTitle.setText("达人");
                 break;
             case R.id.good_rb:
                 position = 3;
+                tvTitle.setText("分享");
                 break;
             case R.id.self_rb:
                 position = 4;
+                tvTitle.setText("个人");
                 break;
         }
         BaseFragment currentFragment = getFragment(position);
@@ -139,4 +156,10 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.inject(this);
+    }
 }
