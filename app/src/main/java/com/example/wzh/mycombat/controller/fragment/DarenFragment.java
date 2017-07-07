@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import okhttp3.Call;
 
-import static com.example.wzh.mycombat.utils.BaseUrl.BASE_URL;
+import static com.example.wzh.mycombat.utils.BaseUrl.EXPERT_RECOMMEND_URL;
 
 /**
  * Created by WZH on 2017/7/5.
@@ -36,8 +36,8 @@ import static com.example.wzh.mycombat.utils.BaseUrl.BASE_URL;
 
 public class DarenFragment extends BaseFragment
 {
-    public final static String EXPERT_RECOMMEND_URL = BASE_URL +
-            "user/masterList?app_key=Android&count=18&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0&page=1";
+//    public final static String EXPERT_RECOMMEND_URL = BASE_URL +
+//            "user/masterList?app_key=Android&count=18&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0&page=1";
     @InjectView(R.id.gridview)
     GridView gridview;
     private SimpleAdapter adapter;

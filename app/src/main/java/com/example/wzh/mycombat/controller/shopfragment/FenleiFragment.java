@@ -20,15 +20,15 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import okhttp3.Call;
 
-import static com.example.wzh.mycombat.utils.BaseUrl.BASE_URL;
+import static com.example.wzh.mycombat.utils.BaseUrl.CATEGORY_URL;
 
 /**
  * Created by WZH on 2017/7/6.
  */
 
 public class FenleiFragment extends BaseFragment {
-    public final static String CATEGORY_URL =
-            BASE_URL + "goods/goodsCategory?app_key=Android&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
+//    public final static String CATEGORY_URL =
+//            BASE_URL + "goods/goodsCategory?app_key=Android&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
     @InjectView(R.id.recyclerview)
     RecyclerView recyclerview;
     @InjectView(R.id.linearlayout)

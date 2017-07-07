@@ -19,15 +19,15 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import okhttp3.Call;
 
-import static com.example.wzh.mycombat.utils.BaseUrl.BASE_URL;
+import static com.example.wzh.mycombat.utils.BaseUrl.TOPIC_URL;
 
 /**
  * Created by WZH on 2017/7/6.
  */
 
 public class ZhuantiFragment extends BaseFragment {
-    public final static String TOPIC_URL = BASE_URL +
-            "goods/shopSpecial?app_key=Android&count=10&sig=3780CB0808528F7CE99081D295EE8C0F%7C116941220826768&uid=626138098&user_token=0516ed9429352c8e1e3bd11c63ba6f54&v=1.0&page=1";
+//    public final static String TOPIC_URL = BASE_URL +
+//            "goods/shopSpecial?app_key=Android&count=10&sig=3780CB0808528F7CE99081D295EE8C0F%7C116941220826768&uid=626138098&user_token=0516ed9429352c8e1e3bd11c63ba6f54&v=1.0&page=1";
     @InjectView(R.id.recyclerview)
     RecyclerView recyclerview;
 
