@@ -1,6 +1,6 @@
 package com.example.wzh.mycombat.controller.shopfragment;
 
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -59,7 +59,6 @@ public class FenleiFragment extends BaseFragment {
                     public void onError(Call call, Exception e, int id) {
                         Log.e("TAG", "联网失败==" + e.getMessage());
                     }
-
                     @Override
                     public void onResponse(String response, int id) {
                         processData(response);
@@ -72,10 +71,12 @@ public class FenleiFragment extends BaseFragment {
         datas = bean.getData().getItems();
         if (datas != null && datas.size() > 0) {
             //   progressbar.setVisibility(View.GONE);
-            adapter = new FenleiAdapter(mContext, datas, recyclerview);
+            adapter = new FenleiAdapter(mContext, datas);
             recyclerview.setAdapter(adapter);
-            recyclerview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-
+//            recyclerview.setLayoutManager(
+//                    new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+            recyclerview.setLayoutManager(new GridLayoutManager(mContext, 2,
+                    GridLayoutManager.VERTICAL, false));
         }
     }
 
