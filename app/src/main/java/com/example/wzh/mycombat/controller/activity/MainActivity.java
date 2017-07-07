@@ -1,6 +1,7 @@
 package com.example.wzh.mycombat.controller.activity;
 
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -110,6 +111,8 @@ public class MainActivity extends BaseActivity {
             case R.id.daren_rb:
                 position = 2;
                 tvTitle.setText("达人");
+                ibShopping.setVisibility(View.GONE);
+                ibShare.setVisibility(View.VISIBLE);
                 break;
             case R.id.good_rb:
                 position = 3;
