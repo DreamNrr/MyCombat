@@ -25,9 +25,6 @@ import butterknife.InjectView;
  */
 
 public class ShopFragment extends BaseFragment {
-
-
-
     @InjectView(R.id.tab)
     TabLayout tab;
     @InjectView(R.id.viewpager)

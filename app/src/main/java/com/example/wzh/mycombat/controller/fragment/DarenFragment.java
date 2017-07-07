@@ -84,11 +84,6 @@ public class DarenFragment extends BaseFragment
         datas = bean.getData().getItems();
         if (datas != null && datas.size() > 0) {
             //progressbar.setVisibility(View.GONE);
-
-
-
-
-
                 final ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
             for (int i = 0; i < datas.size(); i++) {
                 final HashMap<String, Object> map = new HashMap<String, Object>();
