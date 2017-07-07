@@ -47,15 +47,15 @@
             android:background="@android:color/transparent"
             android:src="@drawable/actionbar_navigation_menu"
             android:visibility="gone" />
-        <!--<ImageButton-->
-            <!--android:id="@+id/ib_grid"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginLeft="8dp"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:src="@drawable/icon_pic_grid_type"-->
-            <!--android:visibility="gone" />-->
+        <ImageButton
+            android:id="@+id/ib_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_setting"
+            android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

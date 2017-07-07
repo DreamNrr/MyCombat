@@ -50,6 +50,8 @@ public class MainActivity extends BaseActivity {
     ImageButton ibShopping;
     @InjectView(R.id.ib_share)
     ImageButton ibShare;
+    @InjectView(R.id.ib_setting)
+    ImageButton ibSetting;
     private List<BaseFragment> fragments;
     private BaseFragment tempFragment;
     private int position = 0;
@@ -65,7 +67,6 @@ public class MainActivity extends BaseActivity {
 
 
     }
-
 
 
     @Override
@@ -103,24 +104,42 @@ public class MainActivity extends BaseActivity {
             case R.id.shop_rb:
                 position = 0;
                 tvTitle.setText("商店");
+                ibShopping.setVisibility(View.VISIBLE);
+                ibShare.setVisibility(View.GONE);
+                ibSearch.setVisibility(View.VISIBLE);
+                ibSetting.setVisibility(View.GONE);
                 break;
             case R.id.mgz_rb:
                 position = 1;
                 tvTitle.setText("杂志");
+                ibSearch.setVisibility(View.GONE);
+                ibShopping.setVisibility(View.GONE);
+                ibShare.setVisibility(View.GONE);
+                ibSetting.setVisibility(View.GONE);
                 break;
             case R.id.daren_rb:
                 position = 2;
                 tvTitle.setText("达人");
                 ibShopping.setVisibility(View.GONE);
                 ibShare.setVisibility(View.VISIBLE);
+                ibSearch.setVisibility(View.VISIBLE);
+                ibSetting.setVisibility(View.GONE);
                 break;
             case R.id.good_rb:
                 position = 3;
                 tvTitle.setText("分享");
+                ibShopping.setVisibility(View.GONE);
+                ibShare.setVisibility(View.VISIBLE);
+                ibSearch.setVisibility(View.VISIBLE);
+                ibSetting.setVisibility(View.GONE);
                 break;
             case R.id.self_rb:
                 position = 4;
                 tvTitle.setText("个人");
+                ibShopping.setVisibility(View.GONE);
+                ibShare.setVisibility(View.GONE);
+                ibSearch.setVisibility(View.GONE);
+                ibSetting.setVisibility(View.VISIBLE);
                 break;
         }
         BaseFragment currentFragment = getFragment(position);

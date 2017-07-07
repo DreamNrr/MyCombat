@@ -49,7 +49,7 @@ public class DarenFragment extends BaseFragment
     public View initView() {
         View view = View.inflate(mContext, R.layout.daren_fragment, null);
         ButterKnife.inject(this, view);
-        progressbar = new ProgressBar(mContext);
+
         return view;
     }
 
