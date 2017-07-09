@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp"
+    android:paddingTop="10dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:src="@drawable/a255972"
+        android:layout_width="170dp"
+        android:layout_height="170dp" />
+        <TextView
+            android:background="#ffffff"
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="这里有一只猫啊"
+            android:ellipsize="end"
+            android:singleLine="true"
+            />
+        <RelativeLayout
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/zuozhe_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有只猫"/>
+            <ImageView
+                android:id="@+id/xin"
+                android:src="@drawable/ic_favor"
+                android:layout_toLeftOf="@+id/like_count"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:paddingRight="5dp"
+                />
+            <TextView
+                android:id="@+id/like_count"
+                android:paddingRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="474"/>
+
+        </RelativeLayout>
+        <TextView
+            android:background="#ffffff"
+            android:id="@+id/jiaqian"
+            android:text="￥86.0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+</LinearLayout>

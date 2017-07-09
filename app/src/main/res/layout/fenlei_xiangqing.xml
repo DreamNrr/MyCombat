@@ -8,11 +8,10 @@
     android:orientation="vertical"
     tools:context="com.example.wzh.mycombat.controller.activity.FenleiActivity">
 
-    <include layout="@layout/titlebar" />
-
+<include layout="@layout/titlebar"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="#ffffff">
 
         <TextView
@@ -23,7 +22,7 @@
             android:paddingLeft="30dp"
             android:text="价格筛选"
             android:textColor="#808080"
-            android:textSize="15sp" />
+            android:textSize="10sp" />
 
         <ImageView
             android:id="@+id/shaixuan_btn"
@@ -35,15 +34,10 @@
             android:src="@drawable/arrow_down_big" />
     </RelativeLayout>
 
-    <GridView
-        android:id="@+id/gridview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:columnWidth="150dp"
-        android:gravity="center"
-        android:horizontalSpacing="5dp"
-        android:numColumns="auto_fit"
-        android:padding="10dp"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
