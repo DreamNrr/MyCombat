@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.activity.MainActivity" />
-        <activity android:name=".controller.activity.FenleiActivity"></activity>
+        <activity android:name=".controller.activity.FenleiActivity" />
+        <activity android:name=".controller.activity.ShowImageAndGifActivity"></activity>
     </application>
 
 </manifest>
