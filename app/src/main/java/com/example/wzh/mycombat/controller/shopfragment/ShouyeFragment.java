@@ -4,11 +4,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseFragment;
 import com.example.wzh.mycombat.controller.adapter.MyRecyclerAdapter;
 import com.example.wzh.mycombat.modle.bean.SYBean;
+import com.example.wzh.mycombat.utils.OnItemClickListener;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -73,6 +75,22 @@ public class ShouyeFragment extends BaseFragment {
             recyview.setLayoutManager(linearLayoutManager);
             //设置适配器
             recyview.setAdapter(adapter);
+
+            adapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(View view) {
+                    int childAdapterPosition = recyview.getChildAdapterPosition(view);
+//                    String h5url = datas.get(childAdapterPosition).getOne().getTopic_url();
+//                    String topic_name = datas.get(childAdapterPosition).getTopic_name();
+//                    Intent intent = new Intent(mContext, HTMLActivity.class);
+//                    intent.putExtra("HUrl",h5url);
+//                    intent.putExtra("topic_name",topic_name);
+//                    startActivity(intent);
+
+                    Toast.makeText(mContext, "点击了"+childAdapterPosition, Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
     }
 

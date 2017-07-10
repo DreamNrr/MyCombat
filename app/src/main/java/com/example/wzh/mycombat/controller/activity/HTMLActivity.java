@@ -12,7 +12,7 @@ import butterknife.InjectView;
 
 import static com.example.wzh.mycombat.R.id.ib_back;
 
-public class ZuanTiActivity extends BaseActivity {
+public class HTMLActivity extends BaseActivity {
 
     @InjectView(R.id.tv_title)
     TextView tvTitle;
@@ -46,7 +46,7 @@ public class ZuanTiActivity extends BaseActivity {
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ZuanTiActivity.this.finish();
+                HTMLActivity.this.finish();
             }
         });
     }

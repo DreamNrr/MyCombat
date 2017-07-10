@@ -107,7 +107,7 @@ public class LiWuActivity extends BaseActivity{
                     int childAdapterPosition = recyclerview.getChildAdapterPosition(view);
 //                    String h5url = datas.get(childAdapterPosition).getTopic_url();
 //                    String topic_name = datas.get(childAdapterPosition).getTopic_name();
-//                    Intent intent = new Intent(mContext, ZuanTiActivity.class);
+//                    Intent intent = new Intent(mContext, HTMLActivity.class);
 //                    intent.putExtra("HUrl",h5url);
 //                    intent.putExtra("topic_name",topic_name);
 //                    startActivity(intent);

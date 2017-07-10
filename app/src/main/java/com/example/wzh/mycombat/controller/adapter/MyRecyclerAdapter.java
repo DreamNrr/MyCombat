@@ -1,6 +1,7 @@
 package com.example.wzh.mycombat.controller.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.wzh.mycombat.R;
+import com.example.wzh.mycombat.controller.activity.HTMLActivity;
 import com.example.wzh.mycombat.modle.bean.SYBean;
+import com.example.wzh.mycombat.utils.OnItemClickListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -17,9 +20,12 @@ import java.util.List;
 /**
  * Created by WZH on 2017/7/8.
  */
-public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
     private Context mContext;
     private List<SYBean.DataBean.ItemsBean.ListBean> datas;
+    private OnItemClickListener mOnItemClickListener;
+    private String h5url;
+    private String topic_name;
 
     public MyRecyclerAdapter(Context mContext, List<SYBean.DataBean.ItemsBean.ListBean> datas) {
         this.mContext = mContext;
@@ -45,11 +51,13 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder = new VH2(view);
                 break;
         }
+
+        view.setOnClickListener(this);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         int itemViewType = getItemViewType(position);
         switch (itemViewType) {
             case 0:
@@ -61,6 +69,15 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 Picasso.with(mContext)
                         .load(datas.get(position).getOne().getPic_url())
                         .into(vh.imageView1);
+                if (mOnItemClickListener != null) {
+                    vh.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                             h5url = datas.get(position).getOne().getTopic_url();
+                             topic_name = datas.get(position).getOne().getTopic_name();
+                            startAct();
+                        }
+                    });}
                 break;
             case 1:
                 VH1 vh1 = (VH1) holder;
@@ -76,6 +93,38 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 Picasso.with(mContext)
                         .load(datas.get(position).getFour().getPic_url())
                         .into(vh1.ImageView204);
+                vh1.ImageView201.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        h5url = datas.get(position).getOne().getTopic_url();
+                        topic_name = datas.get(position).getOne().getTopic_name();
+                        startAct();
+                    }
+                });
+                vh1.ImageView202.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        h5url = datas.get(position).getTwo().getTopic_url();
+                        topic_name = datas.get(position).getTwo().getTopic_name();
+                        startAct();
+                    }
+                });
+                vh1.ImageView203.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        h5url = datas.get(position).getThree().getTopic_url();
+                        topic_name = datas.get(position).getThree().getTopic_name();
+                        startAct();
+                    }
+                });
+                vh1.ImageView204.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        h5url = datas.get(position).getFour().getTopic_url();
+                        topic_name = datas.get(position).getFour().getTopic_name();
+                        startAct();
+                    }
+                });
                 break;
             case 2:
                 VH2 vh2 = (VH2) holder;
@@ -85,10 +134,38 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 Picasso.with(mContext)
                         .load(datas.get(position).getTwo().getPic_url())
                         .into(vh2.ImageView302);
+
+                vh2.ImageView301.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        h5url = datas.get(position).getOne().getTopic_url();
+                        topic_name = datas.get(position).getOne().getTopic_name();
+                        startAct();
+                    }
+                });
+                vh2.ImageView302.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        h5url = datas.get(position).getTwo().getTopic_url();
+                        topic_name = datas.get(position).getTwo().getTopic_name();
+                        startAct();
+                    }
+                });
+
+
+
+
                 break;
         }
 
 
+    }
+
+    private void startAct() {
+        Intent intent = new Intent(mContext, HTMLActivity.class);
+        intent.putExtra("HUrl",h5url);
+        intent.putExtra("topic_name",topic_name);
+        mContext.startActivity(intent);
     }
 
 
@@ -109,6 +186,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public int getItemCount() {
         return datas == null ? 0 : datas.size();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.onItemClick(view);
+        }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
     }
 
     public class VH extends RecyclerView.ViewHolder {

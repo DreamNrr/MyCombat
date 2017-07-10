@@ -1,6 +1,5 @@
 package com.example.wzh.mycombat.controller.shopfragment;
 
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,7 +8,6 @@ import android.widget.Toast;
 
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseFragment;
-import com.example.wzh.mycombat.controller.activity.ZuanTiActivity;
 import com.example.wzh.mycombat.controller.adapter.ZhuanTiAdapter;
 import com.example.wzh.mycombat.modle.bean.ZTBean;
 import com.example.wzh.mycombat.utils.OnItemClickListener;
@@ -87,12 +85,7 @@ public class ZhuantiFragment extends BaseFragment {
                 @Override
                 public void onItemClick(View view) {
                     int childAdapterPosition = recyclerview.getChildAdapterPosition(view);
-                    String h5url = datas.get(childAdapterPosition).getTopic_url();
-                    String topic_name = datas.get(childAdapterPosition).getTopic_name();
-                    Intent intent = new Intent(mContext, ZuanTiActivity.class);
-                    intent.putExtra("HUrl",h5url);
-                    intent.putExtra("topic_name",topic_name);
-                    startActivity(intent);
+
 
                     Toast.makeText(mContext, "点击了"+childAdapterPosition, Toast.LENGTH_SHORT).show();
                 }
