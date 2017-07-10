@@ -55,6 +55,7 @@ public class ShopFragment extends BaseFragment {
         viewpager.setAdapter(adapter);
 
         tab.setupWithViewPager(viewpager);
+        tab.getTabAt(2).select();
     }
 
 
