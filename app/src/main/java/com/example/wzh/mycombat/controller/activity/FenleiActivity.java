@@ -22,6 +22,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.List;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 import okhttp3.Call;
 
 public class FenleiActivity extends BaseActivity {
@@ -66,7 +67,7 @@ public class FenleiActivity extends BaseActivity {
     @Override
     public void initData() {
 
-         url = getIntent().getStringExtra("Url");
+        url = getIntent().getStringExtra("Url");
         Log.e("TTT", url);
         getFromNet();
     }
@@ -122,4 +123,15 @@ public class FenleiActivity extends BaseActivity {
 
     }
 
+
+    @OnClick({R.id.ib_back, R.id.ib_shopping})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ib_back:
+                FenleiActivity.this.finish();
+                break;
+            case R.id.ib_shopping:
+                break;
+        }
+    }
 }

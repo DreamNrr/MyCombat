@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.modle.bean.PpBean;
+import com.example.wzh.mycombat.utils.OnItemClickListener;
 
 import java.util.List;
 
@@ -18,9 +19,10 @@ import java.util.List;
  * Created by WZH on 2017/7/7.
  */
 
-public class PinpaiAdapter extends RecyclerView.Adapter<PinpaiAdapter.MyViewHolder>{
+public class PinpaiAdapter extends RecyclerView.Adapter<PinpaiAdapter.MyViewHolder> implements View.OnClickListener{
     Context mContext;
     List<PpBean.DataBean.ItemsBean> datas;
+    private OnItemClickListener mOnItemClickListener;
     public PinpaiAdapter(Context mContext, List<PpBean.DataBean.ItemsBean> datas) {
         this.datas = datas;
         this.mContext = mContext;
@@ -28,9 +30,12 @@ public class PinpaiAdapter extends RecyclerView.Adapter<PinpaiAdapter.MyViewHold
 
     @Override
     public PinpaiAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        PinpaiAdapter.MyViewHolder holder = new PinpaiAdapter.MyViewHolder(LayoutInflater.from(
+
+       View view =  LayoutInflater.from(
                 mContext).inflate(R.layout.item_pinpai, parent,
-                false));
+                false);
+        PinpaiAdapter.MyViewHolder holder = new PinpaiAdapter.MyViewHolder(view);
+        view.setOnClickListener(this);
         return holder;
     }
 
@@ -45,6 +50,17 @@ public class PinpaiAdapter extends RecyclerView.Adapter<PinpaiAdapter.MyViewHold
     @Override
     public int getItemCount() {
         return datas == null ? 0 : datas.size();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.onItemClick(view);
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

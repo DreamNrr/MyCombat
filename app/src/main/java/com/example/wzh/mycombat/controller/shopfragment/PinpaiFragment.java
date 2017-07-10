@@ -1,15 +1,19 @@
 package com.example.wzh.mycombat.controller.shopfragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseFragment;
+import com.example.wzh.mycombat.controller.activity.PinPaiActivity;
 import com.example.wzh.mycombat.controller.adapter.PinpaiAdapter;
 import com.example.wzh.mycombat.modle.bean.PpBean;
 import com.example.wzh.mycombat.utils.MyItemDecoration;
+import com.example.wzh.mycombat.utils.OnItemClickListener;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -34,6 +38,8 @@ public class PinpaiFragment extends BaseFragment {
 
     private List<PpBean.DataBean.ItemsBean> datas;
     private PinpaiAdapter adapter;
+
+    private int brand_id;
 
     @Override
     public View initView() {
@@ -78,6 +84,27 @@ public class PinpaiFragment extends BaseFragment {
                     new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
 //            recyclerview.setLayoutManager(new GridLayoutManager(mContext, 2,
 //                    GridLayoutManager.VERTICAL, false));
+
+            adapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(View view) {
+                    int childAdapterPosition = recyclerview.getChildAdapterPosition(view);
+                    brand_id = datas.get(childAdapterPosition).getBrand_id();
+                    String brand_logo = datas.get(childAdapterPosition).getBrand_logo();
+                    String brand_name = datas.get(childAdapterPosition).getBrand_name();
+
+                    Log.e("TAG","brand_id===="+brand_id);
+                    Intent intent = new Intent(mContext, PinPaiActivity.class);
+                    intent.putExtra("BID",brand_id);
+                    intent.putExtra("brand_logo",brand_logo);
+                    intent.putExtra("brand_name",brand_name);
+                    startActivity(intent);
+                    Toast.makeText(mContext, "点击了"+childAdapterPosition, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
         }
     }
 

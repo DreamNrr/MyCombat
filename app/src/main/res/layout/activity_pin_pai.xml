@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pin_pai"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.wzh.mycombat.controller.activity.PinPaiActivity">
+    <include layout="@layout/titlebar"/>
+    <include layout="@layout/pinp_logo"/>
+    <RadioGroup
+        android:id="@+id/rg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <RadioButton
+            android:id="@+id/story_btn"
+            android:text="品牌故事"
+            style="@style/myStyleT"
+            android:background="@drawable/tv_pinpai_selector"
+            />
+        <RadioButton
+            android:id="@+id/product_btn"
+            android:text="品牌产品"
+            style="@style/myStyleT"
+            android:background="@drawable/tv_pinpai_selector"
+            />
+    </RadioGroup>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#333333">
+
+        <TextView
+            android:id="@+id/story_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#e9e7ef"
+            android:textSize="10sp"
+            android:lineSpacingExtra="7dp"
+            android:text="广东富信电子科技有限公司创建于1995年，经过十多年的技术和管理创新，现已发展成为在热电半导体(Thermoelectric)制冷领域中具有领导地位的中外合资企业，是广东省高科技企业群中一颗耀眼的明珠，是目前国内最大的热电半导体制冷芯片、半导体制冷系统以及半导体电子电器研究与生产的高新技术企业。"
+            android:padding="20dp"
+            android:visibility="gone"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/product_recyview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+
+
+</LinearLayout>
