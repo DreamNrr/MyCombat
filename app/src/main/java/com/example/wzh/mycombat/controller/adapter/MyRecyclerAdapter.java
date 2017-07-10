@@ -21,37 +21,44 @@ import java.util.List;
  * Created by WZH on 2017/7/8.
  */
 public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
+    private String pic_url;
     private Context mContext;
-    private List<SYBean.DataBean.ItemsBean.ListBean> datas;
+    private List<SYBean.DataBean.ItemsBean.ListBeanX> datas;
     private OnItemClickListener mOnItemClickListener;
     private String h5url;
     private String topic_name;
 
-    public MyRecyclerAdapter(Context mContext, List<SYBean.DataBean.ItemsBean.ListBean> datas) {
+    public MyRecyclerAdapter(Context mContext, List<SYBean.DataBean.ItemsBean.ListBeanX> datas) {
         this.mContext = mContext;
         this.datas = datas;
+        Log.e("AAA","1111===="+ datas.get(3).getOne().getPic_url());
+        Log.e("AAA","2222===="+ datas.get(0).getList().get(0).getPic_url());
+//        Log.e("AAA","pic_url===" + pic_url);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         RecyclerView.ViewHolder viewHolder = null;
-        //根据viewType生成viewHolder
+        //根据viewType生成viewHolder,和下面的view类型一致
         switch (viewType) {
             case 0:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type1, null);
-                viewHolder = new VH(view);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type4, null);
+                viewHolder = new VH3(view);
                 break;
             case 1:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type2, null);
-                viewHolder = new VH1(view);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type1, null);
+                viewHolder = new VH0(view);
                 break;
             case 2:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type3, null);
                 viewHolder = new VH2(view);
                 break;
+            case 3:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type2, null);
+                viewHolder = new VH1(view);
+                break;
         }
-
         view.setOnClickListener(this);
         return viewHolder;
     }
@@ -59,13 +66,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         int itemViewType = getItemViewType(position);
+        Log.e("AAA","itemViewType"+itemViewType);
         switch (itemViewType) {
             case 0:
-                VH vh = (VH) holder;
-//                Glide.with(mContext)
-//                        .asBitmap()
-//                        .load(datas.get(position).getOne().getPic_url())
-//                        .into(vh.imageView1);
+                pic_url = datas.get(position).getList().get(position).getPic_url();
+                VH3 vh3 = (VH3) holder;
+                Picasso.with(mContext)
+                        .load(pic_url)
+                        .into(vh3.imageView2);
+                break;
+            case 1:
+                VH0 vh = (VH0) holder;
                 Picasso.with(mContext)
                         .load(datas.get(position).getOne().getPic_url())
                         .into(vh.imageView1);
@@ -73,13 +84,44 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     vh.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                             h5url = datas.get(position).getOne().getTopic_url();
-                             topic_name = datas.get(position).getOne().getTopic_name();
+//                            if(position == 0) {
+//                                跳转商品那个页面
+//                            }
+                            h5url = datas.get(position).getOne().getTopic_url();
+                            topic_name = datas.get(position).getOne().getTopic_name();
                             startAct();
                         }
                     });}
                 break;
-            case 1:
+            case 2:
+                VH2 vh2 = (VH2) holder;
+
+                Picasso.with(mContext)
+                        .load(datas.get(position).getOne().getPic_url())
+                        .into(vh2.ImageView301);
+
+                Picasso.with(mContext)
+                        .load(datas.get(position).getTwo().getPic_url())
+                        .into(vh2.ImageView302);
+
+                vh2.ImageView301.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        h5url = datas.get(position).getOne().getTopic_url();
+                        topic_name = datas.get(position).getOne().getTopic_name();
+                        startAct();
+                    }
+                });
+                vh2.ImageView302.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        h5url = datas.get(position).getTwo().getTopic_url();
+                        topic_name = datas.get(position).getTwo().getTopic_name();
+                        startAct();
+                    }
+                });
+                break;
+            case 3:
                 VH1 vh1 = (VH1) holder;
                 Picasso.with(mContext)
                         .load(datas.get(position).getOne().getPic_url())
@@ -126,39 +168,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     }
                 });
                 break;
-            case 2:
-                VH2 vh2 = (VH2) holder;
-                Picasso.with(mContext)
-                        .load(datas.get(position).getOne().getPic_url())
-                        .into(vh2.ImageView301);
-                Picasso.with(mContext)
-                        .load(datas.get(position).getTwo().getPic_url())
-                        .into(vh2.ImageView302);
-
-                vh2.ImageView301.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        h5url = datas.get(position).getOne().getTopic_url();
-                        topic_name = datas.get(position).getOne().getTopic_name();
-                        startAct();
-                    }
-                });
-                vh2.ImageView302.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        h5url = datas.get(position).getTwo().getTopic_url();
-                        topic_name = datas.get(position).getTwo().getTopic_name();
-                        startAct();
-                    }
-                });
-
-
-
-
-                break;
         }
-
-
     }
 
     private void startAct() {
@@ -172,13 +182,19 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public int getItemViewType(int position) {
         //跟据position对应的条目返回去对应的样式（Type）
-        int home_type = Integer.parseInt(datas.get(position).getHome_type());
-        Log.e("TAG","data=="+datas);
-        if (home_type == 1) {
+        String home_type =datas.get(position).getHome_type()+"";
+        Log.e("TAG","data=="+home_type);
+        if (home_type.equals("6")) {
+            Log.e("AAA","home_type == '6'");
             return 0;
-        } else if (home_type == 4) {
+        } else if (home_type.equals("1")) {
+            Log.e("AAA","home_type == '1'");
             return 1;
-        } else
+        } else if(home_type.equals("4")){
+            Log.e("AAA","home_type == '4'");
+            return 3;
+        }else
+            Log.e("AAA","home_type == '2'");
             return 2;
     }
 
@@ -199,13 +215,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         mOnItemClickListener = listener;
     }
 
-    public class VH extends RecyclerView.ViewHolder {
+    public class VH0 extends RecyclerView.ViewHolder {
         ImageView imageView1;
-        public VH(View itemView) {
+        public VH0(View itemView) {
             super(itemView);
             imageView1 = (ImageView) itemView.findViewById(R.id.im01);
         }
     }
+
 
     public class VH1 extends RecyclerView.ViewHolder {
         ImageView ImageView201;
@@ -231,4 +248,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
+    public class VH3 extends RecyclerView.ViewHolder {
+        ImageView imageView2;
+        public VH3(View view) {
+            super(view);
+            imageView2 = (ImageView) itemView.findViewById(R.id.im02_type4);
+        }
+    }
 }

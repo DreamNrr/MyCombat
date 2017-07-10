@@ -1,12 +1,12 @@
 package com.example.wzh.mycombat.controller.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +15,7 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseFragment;
+import com.example.wzh.mycombat.controller.activity.DaRenActivity;
 import com.example.wzh.mycombat.modle.bean.DrBean;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -43,7 +44,7 @@ public class DarenFragment extends BaseFragment
     private SimpleAdapter adapter;
 
     private List<DrBean.DataBean.ItemsBean> datas;
-    private ProgressBar progressbar;
+    private int finalI;
 
     @Override
     public View initView() {
@@ -55,7 +56,6 @@ public class DarenFragment extends BaseFragment
     @Override
     public void initData() {
         super.initData();
-       // showGridView();
         getFromNet();
     }
 
@@ -82,12 +82,10 @@ public class DarenFragment extends BaseFragment
         DrBean bean = new Gson().fromJson(response, DrBean.class);
         datas = bean.getData().getItems();
         if (datas != null && datas.size() > 0) {
-            //progressbar.setVisibility(View.GONE);
                 final ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
             for (int i = 0; i < datas.size(); i++) {
                 final HashMap<String, Object> map = new HashMap<String, Object>();
-                 Bitmap bitmap ;
-                final int finalI = i;
+                finalI = i;
                 Glide.with(mContext)
                         .asBitmap()
                         .load(datas.get(i).getUser_images().getOrig())
@@ -95,7 +93,8 @@ public class DarenFragment extends BaseFragment
                             @Override
                             public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
                                 map.put("ItemImage", resource);//添加图像资源
-                                map.put("ItemTextName", datas.get(finalI).getNickname());
+                                map.put("ItemTextName", datas.get(finalI).getUsername());
+                              //  Log.e("TAA","name=======" + datas.get(finalI).getNickname());
                                 map.put("ItemTextDuty", datas.get(finalI).getDuty());
                                 items.add(map);
                                 adapter = new SimpleAdapter(mContext,
@@ -121,49 +120,26 @@ public class DarenFragment extends BaseFragment
                             }
                         });
             }
-
-
-
             //添加消息处理
-            gridview.setOnItemClickListener(new ItemClickListener());
+            gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Log.e("TAA","view==" + view + "position=="+position + "id===="+ id);
+//view==android.widget.LinearLayout{16b94886 V.E..... ........ 460,298-680,576}position==5id====5
+                    Intent intent = new Intent(mContext,DaRenActivity.class);
+                    String username = datas.get(position).getUsername();
+                    String ImUrl = datas.get(position).getUser_images().getOrig();
+                    String duty = datas.get(position).getDuty();
+                    intent.putExtra("username",username);
+                    intent.putExtra("ImUrl",ImUrl);
+                    intent.putExtra("duty",duty);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
-//    private void showGridView() {
-//        ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
-//        for (int i = 0; i < 10; i++) {
-//            HashMap<String, Object> map = new HashMap<String, Object>();
-//            map.put("ItemImage", R.drawable.ic_launcher);//添加图像资源的ID
-//            map.put("ItemText", "NO." + String.valueOf(i));//按序号做ItemText
-//            items.add(map);
-//        }
-//        adapter = new SimpleAdapter(mContext,
-//                items,
-//                R.layout.daren_item,
-//                new String[]{"ItemImage", "ItemText"},
-//                new int[]{R.id.ItemImage, R.id.ItemText});
-//
-//        //为GridView设置适配器
-//        gridview.setAdapter(adapter);
-//        //添加消息处理
-//        gridview.setOnItemClickListener(new ItemClickListener());
-//    }
-
-
-    class ItemClickListener implements AdapterView.OnItemClickListener {
-        public void onItemClick(AdapterView<?> arg0,//The AdapterView where the click happened
-                                View arg1,//The view within the AdapterView that was clicked
-                                int arg2,//The position of the view in the adapter
-                                long arg3//The row id of the item that was clicked
-        ) {
-            //在本例中arg2=arg3
-            HashMap<String, Object> item = (HashMap<String, Object>) arg0.getItemAtPosition(arg2);
-            //显示所选Item的ItemText
-            Log.e("TAG",item + "===");
-            //setTitle((String) item.get("ItemText"));
-        }
-
-    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -35,7 +35,7 @@ public class ShouyeFragment extends BaseFragment {
     @InjectView(R.id.floating_btn_main)
     FloatingActionButton floatingBtnMain;
 
-    private List<SYBean.DataBean.ItemsBean.ListBean> datas;
+    private List<SYBean.DataBean.ItemsBean.ListBeanX> datas;
     private MyRecyclerAdapter adapter;
 
     @Override

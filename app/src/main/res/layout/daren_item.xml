@@ -8,8 +8,8 @@
         android:id="@+id/ItemImage"
         android:scaleType="fitXY"
         android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@mipmap/ic_launcher"/>
 <LinearLayout
     android:paddingLeft="10dp"
@@ -21,8 +21,6 @@
         android:id="@+id/ItemTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ItemImage"
-        android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
         android:paddingTop="5dp"
         android:ellipsize="end"
@@ -36,8 +34,6 @@
         android:ellipsize="end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ItemTextName"
-        android:layout_centerHorizontal="true"
         android:textColor="#cccccc"
         android:textSize="9sp"
         android:singleLine="true"

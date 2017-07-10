@@ -23,7 +23,8 @@
         <activity android:name=".controller.activity.ShowImageAndGifActivity" />
         <activity android:name=".controller.activity.PinPaiActivity" />
         <activity android:name=".controller.activity.HTMLActivity" />
-        <activity android:name=".controller.activity.LiWuActivity"></activity>
+        <activity android:name=".controller.activity.LiWuActivity" />
+        <activity android:name=".controller.activity.DaRenActivity"></activity>
     </application>
 
 </manifest>
