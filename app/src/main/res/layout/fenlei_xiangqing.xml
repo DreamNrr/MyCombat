@@ -9,30 +9,7 @@
     tools:context="com.example.wzh.mycombat.controller.activity.FenleiActivity">
 
 <include layout="@layout/titlebar"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#ffffff">
-
-        <TextView
-            android:id="@+id/jiage_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="30dp"
-            android:text="价格筛选"
-            android:textColor="#808080"
-            android:textSize="10sp" />
-
-        <ImageView
-            android:id="@+id/shaixuan_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:paddingRight="30dp"
-            android:src="@drawable/arrow_down_big" />
-    </RelativeLayout>
+    <include layout="@layout/pricechange"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"

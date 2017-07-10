@@ -13,23 +13,23 @@
         android:layout_width="170dp"
         android:layout_height="170dp" />
         <TextView
-            android:background="#ffffff"
+            android:padding="5dp"
+            android:textSize="11sp"
+            android:textColor="#ffffff"
+            android:background="#666666"
             android:id="@+id/title_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="这里有一只猫啊"
             android:ellipsize="end"
             android:singleLine="true"
             />
         <RelativeLayout
-            android:background="#ffffff"
+            android:padding="5dp"
+            android:background="#666666"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/zuozhe_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="有只猫"/>
+
             <ImageView
                 android:id="@+id/xin"
                 android:src="@drawable/ic_favor"
@@ -41,16 +41,32 @@
             <TextView
                 android:id="@+id/like_count"
                 android:paddingRight="5dp"
+                android:textSize="10sp"
+                android:textColor="#6f98c3"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="474"/>
 
+            <TextView
+                android:textSize="11sp"
+                android:id="@+id/zuozhe_tv"
+                android:textColor="#cccccc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有只猫"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
         </RelativeLayout>
         <TextView
-            android:background="#ffffff"
+            android:background="#666666"
             android:id="@+id/jiaqian"
             android:text="￥86.0"
+            android:textSize="11sp"
+            android:textColor="#6f98c3"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 </LinearLayout>

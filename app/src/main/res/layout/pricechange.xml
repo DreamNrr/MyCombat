@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="#ffffff">
+
+
+        <TextView
+            android:id="@+id/jiage_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="30dp"
+            android:text="价格筛选"
+            android:textColor="#808080"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/shaixuan_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="30dp"
+            android:src="@drawable/arrow_down_big" />
+</RelativeLayout>

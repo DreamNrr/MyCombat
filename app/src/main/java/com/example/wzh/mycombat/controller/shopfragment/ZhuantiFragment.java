@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.example.wzh.mycombat.R;
@@ -39,7 +38,6 @@ public class ZhuantiFragment extends BaseFragment {
 
     private List<ZTBean.DataBean.ItemsBean> datas;
     private ZhuanTiAdapter adapter;
-    private WebView webview;
 
     @Override
     public View initView() {
