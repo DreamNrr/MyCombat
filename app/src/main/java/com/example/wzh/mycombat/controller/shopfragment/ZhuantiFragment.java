@@ -90,9 +90,10 @@ public class ZhuantiFragment extends BaseFragment {
                 public void onItemClick(View view) {
                     int childAdapterPosition = recyclerview.getChildAdapterPosition(view);
                     String h5url = datas.get(childAdapterPosition).getTopic_url();
-
+                    String topic_name = datas.get(childAdapterPosition).getTopic_name();
                     Intent intent = new Intent(mContext, ZuanTiActivity.class);
                     intent.putExtra("HUrl",h5url);
+                    intent.putExtra("topic_name",topic_name);
                     startActivity(intent);
 
                     Toast.makeText(mContext, "点击了"+childAdapterPosition, Toast.LENGTH_SHORT).show();
