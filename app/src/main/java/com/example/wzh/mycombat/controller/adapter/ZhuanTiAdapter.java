@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.modle.bean.ZTBean;
+import com.example.wzh.mycombat.utils.OnItemClickListener;
 
 import java.util.List;
 
@@ -18,9 +19,10 @@ import java.util.List;
  * Created by WZH on 2017/7/7.
  */
 
-public class ZhuanTiAdapter extends RecyclerView.Adapter<ZhuanTiAdapter.MyViewHolder>{
+public class ZhuanTiAdapter extends RecyclerView.Adapter<ZhuanTiAdapter.MyViewHolder> implements View.OnClickListener{
     Context mContext;
     List<ZTBean.DataBean.ItemsBean> datas;
+    private OnItemClickListener mOnItemClickListener;
     public ZhuanTiAdapter(Context mContext, List<ZTBean.DataBean.ItemsBean> datas) {
         this.datas = datas;
         this.mContext = mContext;
@@ -28,9 +30,11 @@ public class ZhuanTiAdapter extends RecyclerView.Adapter<ZhuanTiAdapter.MyViewHo
 
     @Override
     public ZhuanTiAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ZhuanTiAdapter.MyViewHolder holder = new ZhuanTiAdapter.MyViewHolder(LayoutInflater.from(
+        View view = LayoutInflater.from(
                 mContext).inflate(R.layout.item_zhuanti, parent,
-                false));
+                false);
+        ZhuanTiAdapter.MyViewHolder holder = new ZhuanTiAdapter.MyViewHolder(view);
+        view.setOnClickListener(this);
         return holder;
     }
 
@@ -47,6 +51,15 @@ public class ZhuanTiAdapter extends RecyclerView.Adapter<ZhuanTiAdapter.MyViewHo
         return datas == null ? 0 : datas.size();
     }
 
+    @Override
+    public void onClick(View view) {
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.onItemClick(view);
+        }
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
     public class MyViewHolder extends RecyclerView.ViewHolder{
         ImageView iv;
         TextView tv;
