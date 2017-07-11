@@ -134,10 +134,10 @@ public class BaseUrl {
 
     //  达人详情页面关注：
     public final static String EXPERT_ATTENTION_URL = BASE_URL +
-            "user/masterFollow?app_key=Android&count=12&owner_id=85&page=1&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0";
+            "user/masterFollow?app_key=Android&count=12&page=1&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0&owner_id=";
     //  达人详情页面粉丝：
     public final static String EXPERT_FANS_URL = BASE_URL +
-            "user/masterFollowed?app_key=Android&count=12&owner_id=85&page=1&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0";
+            "user/masterFollowed?app_key=Android&count=12&page=1&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0&owner_id=";
     //    最多推荐：
     public final static String EXPERT_MENU_MOSTR_URL = BASE_URL +
             "user/masterList?app_key=Android&count=18&orderby=goods_sum&page=1&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0";
