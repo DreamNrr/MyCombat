@@ -38,4 +38,5 @@ dependencies {
     compile 'com.cjj.materialrefeshlayout:library:1.3.0'
     compile 'fm.jiecao:jiecaovideoplayer:4.8.3'
     compile project(':PhotoView_library')
+    compile files('libs/fastjson-1.2.34.jar')
 }

@@ -7,9 +7,14 @@
     android:id="@+id/imageview"
     android:scaleType="fitXY"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="210dp"
     android:src="@drawable/a1926"
     android:paddingBottom="7dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="#99808080">
+    </View>
     <TextView
         android:layout_centerInParent="true"
         android:id="@+id/textview"
