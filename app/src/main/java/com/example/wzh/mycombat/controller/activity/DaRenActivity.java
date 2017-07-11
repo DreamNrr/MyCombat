@@ -79,6 +79,7 @@ public class DaRenActivity extends BaseActivity implements OnItemClickListener {
     private String uid;
     private int btnid = 0;
     private final String[] urll = {EXPERT_LIKE_URL,EXPERT_INFR_URL,EXPERT_ATTENTION_URL,EXPERT_FANS_URL};
+    private DrXQBean.DataBean.ItemsBean items;
 
     @Override
     public int getLayoutId() {
@@ -106,6 +107,8 @@ public class DaRenActivity extends BaseActivity implements OnItemClickListener {
         Glide.with(this).asBitmap().load(imurl).into(imageview);
         name.setText(username);
         zhiye.setText(duty);
+
+
     }
 
     private void getFromNet(String url) {
@@ -123,6 +126,11 @@ public class DaRenActivity extends BaseActivity implements OnItemClickListener {
                     public void onResponse(String response, int id) {
                         //Log.e("TAA","Url======" + url);
                        processData(response);
+//                        String like_count = rbdata.getLike_count();
+//                        String recommendation_count = rbdata.getRecommendation_count();
+//                        String followed_count = rbdata.getFollowed_count();
+//                        String following_count = rbdata.getFollowing_count();
+//                        Log.e("TAA","喜欢，推荐，关注，粉丝" + like_count + recommendation_count  + following_count + followed_count);
                     }
                 });
     }
@@ -132,6 +140,7 @@ public class DaRenActivity extends BaseActivity implements OnItemClickListener {
             case 0 :
             case 1 :
                 DrXQBean Xbean = new Gson().fromJson(response, DrXQBean.class);
+                items = Xbean.getData().getItems();
                 datax = Xbean.getData().getItems().getGoods();
                 if (datax != null && datax.size() > 0) {
                     //   progressbar.setVisibility(View.GONE);
@@ -157,6 +166,17 @@ public class DaRenActivity extends BaseActivity implements OnItemClickListener {
                 }
                 break;
         }
+        Log.e("TAA",items.getLike_count() + "," + items.getRecommendation_count()  + ","
+                + items.getFollowing_count() + "," + items.getFollowed_count());
+        String like_count = items.getLike_count();
+        String recommendation_count = items.getRecommendation_count();
+        String following_count = items.getFollowing_count();
+        String followed_count = items.getFollowed_count();
+        //rbLike.setText(String.format(rbLike.getText().toString().trim(), items.getLike_count()));
+        like.setText(String.format(like.getText().toString().trim() + "\n",like_count));
+        tuijian.setText(String.format(tuijian.getText().toString().trim() + "\n",recommendation_count));
+        guanzhu.setText(String.format(guanzhu.getText().toString().trim() + "\n",following_count));
+        fensi.setText(String.format(fensi.getText().toString().trim() + "\n",followed_count));
     }
 
     @Override
