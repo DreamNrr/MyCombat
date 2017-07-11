@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.modle.bean.MagnizeBean;
+import com.example.wzh.mycombat.utils.DateChange;
 import com.example.wzh.mycombat.utils.OnItemClickListener;
 
 import java.util.List;
@@ -21,6 +22,8 @@ import java.util.List;
  */
 
 public class MagnizeAdapter extends RecyclerView.Adapter<MagnizeAdapter.MyViewHolder> implements View.OnClickListener{
+
+
     Context mContext;
     List<MagnizeBean.Data.Items.ProductBean> datas;
     private OnItemClickListener mOnItemClickListener;
@@ -47,7 +50,19 @@ public class MagnizeAdapter extends RecyclerView.Adapter<MagnizeAdapter.MyViewHo
         holder.tv1.setText(datas.get(position).getTopic_name());
         Log.e("TAA","图片名字===" + datas.get(position).getTopic_name());
         holder.tv2.setText("- "+datas.get(position).getCat_name()+ " -");
-//        holder.tv3.setText(datas.get(position).getTopic_name());
+
+        Log.e("TAA","时间==" + datas.get(position).getAddtime());
+        // 时间==2017-07-05 23:00:38
+        String addtime = datas.get(position).getAddtime();
+        Log.e("TAA","截取==" + addtime.substring(5,7) + "，" +addtime.substring(8,10) );
+        // 截取==07，05
+
+        String substring = addtime.substring(5, 7);
+
+        String s = DateChange.dateFormat(substring);
+        Log.e("TAA","拼接===" +  s);
+        holder.tv3.setText("- " + s + "." + addtime.substring(8, 10) + " -");
+        //+ DateChange.dateFormat(addtime.substring(5, 6)) + "."
     }
 
     @Override
