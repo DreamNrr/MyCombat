@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+  >
+
+    <ImageView
+        android:layout_margin="5dp"
+        android:layout_centerInParent="true"
+        android:layout_width="170dp"
+        android:layout_height="120dp"
+        android:id="@+id/imageview"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_topic_all"/>
+    <View
+        android:layout_width="170dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:background="#77333333"/>
+    <ImageView
+        android:id="@+id/im_00"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/icon_my_topics"
+        android:layout_toLeftOf="@+id/textview"
+        android:layout_centerInParent="true"
+        />
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:paddingLeft="5dp"
+        android:id="@+id/textview"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="我的收藏"/>
+
+</RelativeLayout>

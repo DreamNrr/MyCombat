@@ -4,6 +4,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.wzh.mycombat.R;
@@ -32,6 +33,8 @@ public class ZaZhiActivity extends BaseActivity {
     RelativeLayout leftRl;
     @InjectView(R.id.right_rl)
     RelativeLayout rightRl;
+    @InjectView(R.id.button)
+    LinearLayout button;
 
     @Override
     public int getLayoutId() {
@@ -85,7 +88,7 @@ public class ZaZhiActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.left_rl, R.id.right_rl})
+    @OnClick({R.id.left_rl, R.id.right_rl,R.id.button})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.left_rl:
@@ -94,6 +97,10 @@ public class ZaZhiActivity extends BaseActivity {
             case R.id.right_rl:
                 tab.getTabAt(1).select();
                 break;
+            case R.id.button:
+                ZaZhiActivity.this.finish();
+                break;
         }
     }
+
 }
