@@ -24,7 +24,8 @@
         <activity android:name=".controller.activity.PinPaiActivity" />
         <activity android:name=".controller.activity.HTMLActivity" />
         <activity android:name=".controller.activity.LiWuActivity" />
-        <activity android:name=".controller.activity.DaRenActivity"></activity>
+        <activity android:name=".controller.activity.DaRenActivity" />
+        <activity android:name=".controller.activity.ZaZhiActivity"></activity>
     </application>
 
 </manifest>

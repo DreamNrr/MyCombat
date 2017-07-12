@@ -7,9 +7,11 @@
     android:orientation="vertical"
     tools:context="com.example.wzh.mycombat.controller.activity.MainActivity">
 
-        <include layout="@layout/titlebar" />
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar" />
 
-        <FrameLayout
+    <FrameLayout
             android:id="@+id/fraglayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -23,7 +25,6 @@
             android:layout_height="60dp"
             android:background="#000000"
             android:gravity="center"
-
             android:orientation="horizontal">
 
             <RadioButton

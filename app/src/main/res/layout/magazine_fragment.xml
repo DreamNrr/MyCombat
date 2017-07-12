@@ -5,6 +5,9 @@
     android:background="#333333"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/titlebar_zz"
+        layout="@layout/titlebar" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"

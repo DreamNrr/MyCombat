@@ -1,12 +1,15 @@
 package com.example.wzh.mycombat.controller.activity;
 
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.wzh.mycombat.R;
@@ -17,8 +20,11 @@ import com.example.wzh.mycombat.controller.fragment.GoodFragment;
 import com.example.wzh.mycombat.controller.fragment.MagazineFragment;
 import com.example.wzh.mycombat.controller.fragment.SelfFragment;
 import com.example.wzh.mycombat.controller.fragment.ShopFragment;
+import com.example.wzh.mycombat.utils.DateChange;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.InjectView;
@@ -52,6 +58,13 @@ public class MainActivity extends BaseActivity {
     ImageButton ibShare;
     @InjectView(R.id.ib_setting)
     ImageButton ibSetting;
+    @InjectView(R.id.zz_tv)
+    TextView zzTv;
+    @InjectView(R.id.im_down)
+    ImageView imDown;
+    @InjectView(R.id.title_bar)
+    public RelativeLayout titlebarrl;
+
     private List<BaseFragment> fragments;
     private BaseFragment tempFragment;
     private int position = 0;
@@ -88,6 +101,7 @@ public class MainActivity extends BaseActivity {
             }
         });
         radioGroup.check(R.id.shop_rb);
+
     }
 
     private void initFragment() {
@@ -104,46 +118,72 @@ public class MainActivity extends BaseActivity {
             case R.id.shop_rb:
                 position = 0;
                 tvTitle.setText("商店");
+                titlebarrl.setVisibility(View.VISIBLE);
                 ibShopping.setVisibility(View.VISIBLE);
                 ibShare.setVisibility(View.GONE);
                 ibSearch.setVisibility(View.VISIBLE);
                 ibSetting.setVisibility(View.GONE);
+                zzTv.setVisibility(View.GONE);
+                imDown.setVisibility(View.GONE);
                 break;
             case R.id.mgz_rb:
                 position = 1;
+                titlebarrl.setVisibility(View.GONE);
                 tvTitle.setText("杂志");
                 ibSearch.setVisibility(View.GONE);
                 ibShopping.setVisibility(View.GONE);
                 ibShare.setVisibility(View.GONE);
                 ibSetting.setVisibility(View.GONE);
+                zzTv.setVisibility(View.VISIBLE);
+                imDown.setVisibility(View.VISIBLE);
+                getTime();
                 break;
             case R.id.daren_rb:
                 position = 2;
+                titlebarrl.setVisibility(View.VISIBLE);
                 tvTitle.setText("达人");
                 ibShopping.setVisibility(View.GONE);
                 ibShare.setVisibility(View.VISIBLE);
                 ibSearch.setVisibility(View.VISIBLE);
                 ibSetting.setVisibility(View.GONE);
+                zzTv.setVisibility(View.GONE);
+                imDown.setVisibility(View.GONE);
                 break;
             case R.id.good_rb:
                 position = 3;
                 tvTitle.setText("分享");
+                titlebarrl.setVisibility(View.VISIBLE);
                 ibShopping.setVisibility(View.GONE);
                 ibShare.setVisibility(View.VISIBLE);
                 ibSearch.setVisibility(View.VISIBLE);
                 ibSetting.setVisibility(View.GONE);
+                zzTv.setVisibility(View.GONE);
+                imDown.setVisibility(View.GONE);
                 break;
             case R.id.self_rb:
                 position = 4;
                 tvTitle.setText("个人");
+                titlebarrl.setVisibility(View.VISIBLE);
                 ibShopping.setVisibility(View.GONE);
                 ibShare.setVisibility(View.GONE);
                 ibSearch.setVisibility(View.GONE);
                 ibSetting.setVisibility(View.VISIBLE);
+                zzTv.setVisibility(View.GONE);
+                imDown.setVisibility(View.GONE);
                 break;
         }
         BaseFragment currentFragment = getFragment(position);
         switchFragment(currentFragment);
+    }
+
+    private void getTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
+        String datetime = sdf.format(new Date());
+        Log.e("TAG", "data===============" + datetime);
+        //===07-11
+        String substring = datetime.substring(0, 2);
+        String s = DateChange.dateFormat(substring);
+        zzTv.setText(s + "." + datetime.substring(3, 5));
     }
 
     private void switchFragment(BaseFragment currentFragment) {
@@ -175,6 +215,7 @@ public class MainActivity extends BaseActivity {
 
         }
     }
+
 
     private BaseFragment getFragment(int position) {
         if (fragments != null && fragments.size() > 0) {

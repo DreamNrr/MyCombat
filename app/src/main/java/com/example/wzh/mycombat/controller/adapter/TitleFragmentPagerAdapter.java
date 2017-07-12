@@ -19,6 +19,7 @@ public class TitleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private String[] titles;
 
+
     /**
      * Instantiates a new ab fragment pager adapter.
      *
@@ -30,6 +31,7 @@ public class TitleFragmentPagerAdapter extends FragmentPagerAdapter {
         super(mFragmentManager);
         mFragmentList = fragmentList;
     }
+
 
     /**
      * titles是给TabLayout设置title用的
@@ -44,6 +46,8 @@ public class TitleFragmentPagerAdapter extends FragmentPagerAdapter {
         mFragmentList = fragmentList;
         this.titles = titles;
     }
+
+
 
     /**
      * 描述：获取数量.

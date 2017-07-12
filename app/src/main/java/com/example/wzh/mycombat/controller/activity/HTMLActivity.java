@@ -28,6 +28,7 @@ public class HTMLActivity extends BaseActivity {
     ImageButton ibSetting;
     @InjectView(R.id.webview)
     WebView webview;
+
     private String hUrl;
     private String topic_name;
 
@@ -67,6 +68,7 @@ public class HTMLActivity extends BaseActivity {
         webview.loadUrl(hUrl);
         //  webview.setWebViewClient(new HelloWebViewClient ());
     }
+
 
 
 //    private class HelloWebViewClient extends WebViewClient {
