@@ -1,5 +1,6 @@
 package com.example.wzh.mycombat.controller.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
@@ -109,13 +109,12 @@ public class FenleiActivity extends BaseActivity {
             adapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void onItemClick(View view) {
-//                    int childAdapterPosition = recyclerview.getChildAdapterPosition(view);
-//                    String s = Furl[childAdapterPosition];
-//                    Log.e("TAG", "s====" + s);
-//                    Intent intent = new Intent(mContext, FenleiActivity.class);
-//                    intent.putExtra("Url", s);
-//                    startActivity(intent);
-                    Toast.makeText(FenleiActivity.this, "点击了", Toast.LENGTH_SHORT).show();
+                    int childAdapterPosition = recyclerview.getChildAdapterPosition(view);
+                    String goods_id = datas.get(childAdapterPosition).getGoods_id();
+                    Intent intent = new Intent(FenleiActivity.this, GoodsInfoActivity.class);
+                    intent.putExtra("goods_id", goods_id);
+                    startActivity(intent);
+                   // Toast.makeText(FenleiActivity.this, "点击了", Toast.LENGTH_SHORT).show();
                 }
             });
         }
