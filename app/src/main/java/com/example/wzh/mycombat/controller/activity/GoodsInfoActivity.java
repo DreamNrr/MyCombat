@@ -24,8 +24,12 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.List;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 import okhttp3.Call;
 
+import static com.example.wzh.mycombat.R.id.ll_goods_details_iv;
+import static com.example.wzh.mycombat.R.id.rg_goods_details;
+import static com.example.wzh.mycombat.R.id.tv_buy_know;
 import static com.example.wzh.mycombat.utils.BaseUrl.BRAND_GOODS_DETAILS_URL;
 
 public class GoodsInfoActivity extends BaseActivity {
@@ -56,11 +60,11 @@ public class GoodsInfoActivity extends BaseActivity {
     RadioButton rbGoodsDetails;
     @InjectView(R.id.rb_buy_note)
     RadioButton rbBuyNote;
-    @InjectView(R.id.rg_goods_details)
+    @InjectView(rg_goods_details)
     RadioGroup rgGoodsDetails;
-    @InjectView(R.id.tv_buy_know)
+    @InjectView(tv_buy_know)
     TextView tvBuyKnow;
-    @InjectView(R.id.ll_goods_details_iv)
+    @InjectView(ll_goods_details_iv)
     LinearLayout llGoodsDetailsIv;
     @InjectView(R.id.ib_back)
     ImageButton ibBack;
@@ -123,11 +127,26 @@ public class GoodsInfoActivity extends BaseActivity {
         discountPrice.setText(bean.getData().getItems().getPrice());
         tvLikeCount.setText(bean.getData().getItems().getLike_count());
         //logo图片
-        Glide.with(this).asBitmap().load( bean.getData().getItems().getBrand_info().getBrand_logo()).into(ivLogo);
+        Glide.with(this).asBitmap().load(bean.getData().getItems().getBrand_info().getBrand_logo()).into(ivLogo);
         //logo名字
         tvBrandName.setText(bean.getData().getItems().getBrand_info().getBrand_name());
-        images_item  = bean.getData().getItems().getImages_item();;
+        images_item = bean.getData().getItems().getImages_item();
+        ;
 //        Log.e("TAA",images_item + "+++++++images_item");
+
+        List<GoogsBean.DataBean.ItemsBean.GoodsInfoBean> goods_info = bean.getData().getItems().getGoods_info();
+
+        Log.e("TAA", "good_info===========" + goods_info);
+
+        if (goods_info != null && goods_info.size() > 0) {
+            for (int i = 0; i < goods_info.size(); i++) {
+                ImageView imageView = new ImageView(this);
+                Glide.with(this).asBitmap().load(goods_info.get(i).getContent().getImg()).into(imageView);
+                llGoodsDetailsIv.addView(imageView);
+            }
+        }
+
+        tvBuyKnow.setText(bean.getData().getItems().getGood_guide().getContent());
 
         VPAdapter adapter = new VPAdapter();
         viewPager.setAdapter(adapter);
@@ -135,13 +154,39 @@ public class GoodsInfoActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+        rgGoodsDetails.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.rb_goods_details:
+                        llGoodsDetailsIv.setVisibility(View.VISIBLE);
+                        tvBuyKnow.setVisibility(View.GONE);
+                        break;
+                    case R.id.rb_buy_note:
+                        llGoodsDetailsIv.setVisibility(View.GONE);
+                        tvBuyKnow.setVisibility(View.VISIBLE);
+                        break;
+                }
+            }
+        });
+        rgGoodsDetails.check(R.id.rb_goods_details);
 
     }
 
 
+    @OnClick({R.id.ib_back, R.id.ib_shopping})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ib_back:
+                GoodsInfoActivity.this.finish();
+                break;
+            case R.id.ib_shopping:
+                break;
+        }
+    }
+
+
     public class VPAdapter extends PagerAdapter {
-
-
 
         @Override
         public int getCount() {
@@ -168,26 +213,6 @@ public class GoodsInfoActivity extends BaseActivity {
             return imageView;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
