@@ -1,5 +1,6 @@
 package com.example.wzh.mycombat.controller.activity;
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -174,13 +175,21 @@ public class GoodsInfoActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ib_back, R.id.ib_shopping})
+    @OnClick({R.id.ib_back, R.id.ib_shopping,R.id.ll_logo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ib_back:
                 GoodsInfoActivity.this.finish();
                 break;
             case R.id.ib_shopping:
+                break;
+            case R.id.ll_logo:
+                Intent intent = new Intent(GoodsInfoActivity.this, PinPaiActivity.class);
+                intent.putExtra("brand_logo",bean.getData().getItems().getBrand_info().getBrand_logo());
+                intent.putExtra("brand_name",bean.getData().getItems().getBrand_info().getBrand_name());
+                int brand_id = Integer.parseInt(bean.getData().getItems().getBrand_info().getBrand_id());
+                intent.putExtra("BID",brand_id);
+                startActivity(intent);
                 break;
         }
     }
