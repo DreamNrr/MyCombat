@@ -195,12 +195,8 @@ public class Tuijianfragment extends BaseFragment {
             } else {
                 tvNomedia.setVisibility(View.INVISIBLE);
             }
-
         }
     }
-
-
-
 
     public void getDataFromNet() {
         RequestParams reques = new RequestParams(GoodUrl);
