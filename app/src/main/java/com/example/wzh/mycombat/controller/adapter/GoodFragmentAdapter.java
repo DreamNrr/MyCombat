@@ -14,6 +14,7 @@ import com.example.wzh.mycombat.holder.TextHolder;
 import com.example.wzh.mycombat.holder.VideoHoder;
 import com.example.wzh.mycombat.modle.bean.GoodBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,11 +22,10 @@ import java.util.List;
  */
 public class GoodFragmentAdapter extends BaseAdapter{
     private final Context mContext;
-    private final List<GoodBean.ListBean> datas;
+    private final List<GoodBean.ListBean> datas = new ArrayList<>();
 
-    public GoodFragmentAdapter(Context mContext, List<GoodBean.ListBean> datas) {
+    public GoodFragmentAdapter(Context mContext) {
         this.mContext = mContext;
-        this.datas = datas;
     }
     //视频
     private static final int TYPE_VIDEO = 0;
@@ -169,5 +169,17 @@ public class GoodFragmentAdapter extends BaseAdapter{
                 break;
         }
         return convertView;
+    }
+
+    public void setDatas(boolean isLoadMore, List<GoodBean.ListBean> trailers) {
+
+        if(trailers != null) {
+            if(!isLoadMore) {
+                datas.clear();
+            }
+            datas.addAll(trailers);
+            notifyDataSetChanged();
+
+        }
     }
 }
