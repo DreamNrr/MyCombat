@@ -174,9 +174,9 @@ public class GoodFragmentAdapter extends BaseAdapter{
     public void setDatas(boolean isLoadMore, List<GoodBean.ListBean> trailers) {
 
         if(trailers != null) {
-            if(!isLoadMore) {
+//            if(!isLoadMore) {
                 datas.clear();
-            }
+//            }
             datas.addAll(trailers);
             notifyDataSetChanged();
 

@@ -189,6 +189,7 @@ public class Tuijianfragment extends BaseFragment {
             trailers = netAudioBean.getList();
             if (trailers != null && trailers.size() > 0) {
                 tvNomedia.setVisibility(View.GONE);
+                listview.setSelection(adapter.getCount());
                 adapter.setDatas(isLoadMore, trailers);
                 progressbar.setVisibility(View.GONE);
             } else {
