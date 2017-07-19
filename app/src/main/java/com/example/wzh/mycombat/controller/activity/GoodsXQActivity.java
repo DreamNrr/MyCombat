@@ -18,6 +18,7 @@ import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
 import com.example.wzh.mycombat.modle.bean.GoogsBean;
 import com.example.wzh.mycombat.utils.DensityUtil;
+import com.example.wzh.mycombat.view.FlowRadioGroup;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -128,8 +129,11 @@ public class GoodsXQActivity extends BaseActivity {
                 textView.setTextColor(Color.WHITE);
                 textView.setTextSize(DensityUtil.dip2px(this, 6));
 
-                RadioGroup radioGroup = new RadioGroup(this);
-                radioGroup.setOrientation(LinearLayout.HORIZONTAL);
+//                RadioGroup radioGroup = new RadioGroup(this);
+//                radioGroup.setOrientation(LinearLayout.HORIZONTAL);
+
+                FlowRadioGroup flowRadioGroup = new FlowRadioGroup(this);
+                flowRadioGroup.setOrientation(LinearLayout.HORIZONTAL);
 
                 listdatas = datas.get(i).getAttrList();
 
@@ -142,14 +146,15 @@ public class GoodsXQActivity extends BaseActivity {
                     radioButton.setTextColor(Color.WHITE);
                     radioButton.setHeight(DensityUtil.dip2px(this, 40));
                     radioButton.setGravity(center);
+                    radioButton.setButtonDrawable(R.color.translucent);//隐藏button
                     radioButton.setId(j);
                     radioButton.setTag(listdatas.get(j).getImg_path());
                     radioButton.setPadding(DensityUtil.dip2px(this, 3), DensityUtil.dip2px(this, 3), DensityUtil.dip2px(this, 3), DensityUtil.dip2px(this, 3));
-                    LinearLayout.LayoutParams layoutParams =
-                            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    RadioGroup.LayoutParams layoutParams =
+                            new RadioGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     layoutParams.setMargins(10, 10, 10, 10);//4个参数按顺序分别是左上右下
                     radioButton.setLayoutParams(layoutParams);
-                    radioGroup.addView(radioButton);
+                    flowRadioGroup.addView(radioButton);
 
 
                     radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -166,7 +171,7 @@ public class GoodsXQActivity extends BaseActivity {
 
                 }
                 skuLl.addView(textView);
-                skuLl.addView(radioGroup);
+                skuLl.addView(flowRadioGroup);
 
             }
         }
