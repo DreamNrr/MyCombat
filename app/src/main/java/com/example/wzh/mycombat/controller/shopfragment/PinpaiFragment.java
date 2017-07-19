@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -173,7 +172,7 @@ public class PinpaiFragment extends BaseFragment {
                     intent.putExtra("brand_logo",brand_logo);
                     intent.putExtra("brand_name",brand_name);
                     startActivity(intent);
-                    Toast.makeText(mContext, "点击了"+childAdapterPosition, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, "点击了"+childAdapterPosition, Toast.LENGTH_SHORT).show();
                 }
             });
 

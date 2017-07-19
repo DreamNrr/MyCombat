@@ -171,6 +171,24 @@ public class GoodsInfoActivity extends BaseActivity {
             }
         });
         rgGoodsDetails.check(R.id.rb_goods_details);
+        //加购和立即购买
+        rgBuyCart.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.rb_add_cart:
+                        //判断是否登录过
+                        //是
+                        Intent intent = new Intent(GoodsInfoActivity.this, GoodsXQActivity.class);
+                        startActivity(intent);
+                        //否---跳转登录页面
+                        break;
+                    case R.id.rg_buy_cart:
+                        break;
+                }
+            }
+        });
+        
 
     }
 

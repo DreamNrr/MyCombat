@@ -11,7 +11,7 @@ public class AccountTable {
     public static final String COL_NICK = "nick";
 
     public static final String CREATE_TABLE = "create table "+TABLE_NAME+"("
-            +COL_HXID+" text primary key, "
+            +COL_HXID+" text primary key,"
             +COL_USERNAME +" text, "
             +COL_PHOTO +" text, "
             +COL_NICK +" text)";

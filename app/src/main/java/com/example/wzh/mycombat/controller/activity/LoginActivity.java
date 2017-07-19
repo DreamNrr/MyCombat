@@ -1,5 +1,7 @@
 package com.example.wzh.mycombat.controller.activity;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
 import com.example.wzh.mycombat.common.AppNetConfig;
+import com.example.wzh.mycombat.modle.db.DBHelper;
 import com.example.wzh.mycombat.utils.HttpUtils;
 
 import org.json.JSONException;
@@ -88,6 +91,8 @@ public class LoginActivity extends BaseActivity {
     Button register;
     @InjectView(R.id.rl_register)
     RelativeLayout rlRegister;
+    private DBHelper dbHelper;
+    private SQLiteDatabase database;
 
     @Override
     public int getLayoutId() {
@@ -96,7 +101,9 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+         dbHelper = new DBHelper(this);
+        //连接数据库
+         database = dbHelper.getReadableDatabase();
     }
 
 
@@ -108,6 +115,12 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
                 rlRegister.setVisibility(View.VISIBLE);
                 llLogin.setVisibility(View.GONE);
+            }
+        });
+        loginBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginActivity.this.finish();
             }
         });
 
@@ -130,6 +143,9 @@ public class LoginActivity extends BaseActivity {
               @Override
               public void onSuccess(String json) {
                   Log.e("TAG", "onSuccess: " + json);
+                  startActivity(new Intent(LoginActivity.this,ShoppingActivity.class));
+
+                  finish();
               }
 
               @Override
@@ -174,7 +190,12 @@ public class LoginActivity extends BaseActivity {
                                     showToast("用户已存在");
                                 }else{
                                     showToast("注册成功");
-                                    finish();
+                                  llLogin.setVisibility(View.VISIBLE);
+                                    rlRegister.setVisibility(View.GONE);
+                                    mobileEt.setText(name);
+                                    passwordEt.setText(password2);
+                                    //保存到数据库
+                                    database.execSQL("insert into contact(username,password) values('" + name + "','" + password2 + "')");
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

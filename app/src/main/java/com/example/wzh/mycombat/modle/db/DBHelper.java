@@ -12,14 +12,14 @@ import com.example.wzh.mycombat.modle.table.ContactTable;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-    public DBHelper(Context context, String name) {
-        super(context, name,null,1);
+
+    public DBHelper(Context context) {
+            super(context,"account.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(ContactTable.CREATE_TABLE);
-        //sqLiteDatabase.execSQL(InvitationTable.CREATE_TABLE);
     }
 
     @Override

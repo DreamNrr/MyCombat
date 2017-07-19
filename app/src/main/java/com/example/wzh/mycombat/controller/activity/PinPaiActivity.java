@@ -1,5 +1,6 @@
 package com.example.wzh.mycombat.controller.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -137,13 +137,12 @@ public class PinPaiActivity extends BaseActivity {
             adapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void onItemClick(View view) {
-//                    int childAdapterPosition = recyclerview.getChildAdapterPosition(view);
-//                    String s = Furl[childAdapterPosition];
-//                    Log.e("TAG", "s====" + s);
-//                    Intent intent = new Intent(mContext, FenleiActivity.class);
-//                    intent.putExtra("Url", s);
-//                    startActivity(intent);
-                    Toast.makeText(PinPaiActivity.this, "点击了", Toast.LENGTH_SHORT).show();
+                    int childAdapterPosition = productRecyview.getChildAdapterPosition(view);
+                    String goods_id = datas.get(childAdapterPosition).getGoods_id();
+                    Intent intent = new Intent(PinPaiActivity.this, GoodsInfoActivity.class);
+                    intent.putExtra("goods_id", goods_id);
+                    startActivity(intent);
+                 //   Toast.makeText(PinPaiActivity.this, "点击了", Toast.LENGTH_SHORT).show();
                 }
             });
 
