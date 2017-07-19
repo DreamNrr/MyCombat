@@ -63,7 +63,7 @@ public class BaseUrl {
             "goods/goodsShare?app_key=Android&cat_code=0214&count=10&coverId=1&page=1&sig=6E1DEF1DAFF84909ECD98F32FE6CDAD5%7C536890620070968&v=1.0";
     //品牌
     public final static String BRAND_URL = BASE_URL +
-            "brand/brandList?app_key=Android&count=20&page=1&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
+            "brand/brandList?app_key=Android&count=20&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0&page=";
     //品牌 item详情url brand_id需要动态传入
     public final static String BRAND_DETAILS_URL = BASE_URL +
             "brand/brandShopList?app_key=Android&count=20&page=1&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0&brand_id=";

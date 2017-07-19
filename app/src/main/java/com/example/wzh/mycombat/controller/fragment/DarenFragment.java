@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.transition.Transition;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseFragment;
 import com.example.wzh.mycombat.controller.activity.DaRenActivity;
@@ -133,11 +133,11 @@ public class DarenFragment extends BaseFragment {
                         Log.e("TAG", "view==" + view);
                         final ImageView iv = (ImageView) view;
                         Glide.with(mContext)
-                                .asBitmap()
                                 .load(data)
+                                .asBitmap()
                                 .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
                                     @Override
-                                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                                         iv.setImageBitmap(resource);
                                     }
                                 });

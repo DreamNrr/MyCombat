@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.modle.bean.ZuoZheBean;
 import com.example.wzh.mycombat.utils.ImageUtils;
@@ -52,9 +52,9 @@ public class ZuoZheAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         view =  View.inflate(mContext, R.layout.item_zuozhe, null);
         final ViewHolder holder = new ViewHolder(view);
-        Glide.with(mContext).asBitmap().load(datas.get(i).getThumb()).into(new SimpleTarget<Bitmap>() {
+        Glide.with(mContext).load(datas.get(i).getThumb()).asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
-            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 holder.imageview.setImageBitmap(ImageUtils.toRound(resource));
             }
         });

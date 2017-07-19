@@ -1,5 +1,6 @@
 package com.example.wzh.mycombat.controller.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
@@ -101,6 +102,13 @@ public class MainActivity extends BaseActivity {
             }
         });
         radioGroup.check(R.id.shop_rb);
+
+        ibShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            }
+        });
 
     }
 

@@ -2,6 +2,7 @@ package com.example.wzh.mycombat.base;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 
@@ -32,5 +33,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract int getLayoutId();
     public abstract void initData();
     public abstract void initListener();
+
+    public void showToast(String messages){
+        Toast.makeText(this, messages, Toast.LENGTH_SHORT).show();
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.wzh.mycombat.controller.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
@@ -105,14 +105,11 @@ public class LiWuActivity extends BaseActivity{
                 @Override
                 public void onItemClick(View view) {
                     int childAdapterPosition = recyclerview.getChildAdapterPosition(view);
-//                    String h5url = datas.get(childAdapterPosition).getTopic_url();
-//                    String topic_name = datas.get(childAdapterPosition).getTopic_name();
-//                    Intent intent = new Intent(mContext, HTMLActivity.class);
-//                    intent.putExtra("HUrl",h5url);
-//                    intent.putExtra("topic_name",topic_name);
-//                    startActivity(intent);
+                    String goods_id = datas.get(childAdapterPosition).getGoods_id();
+                    Intent intent = new Intent(LiWuActivity.this, GoodsInfoActivity.class);
+                    intent.putExtra("goods_id",goods_id);
+                    startActivity(intent);
 
-                    Toast.makeText(LiWuActivity.this, "点击了" + childAdapterPosition, Toast.LENGTH_SHORT).show();
                 }
             });
         }

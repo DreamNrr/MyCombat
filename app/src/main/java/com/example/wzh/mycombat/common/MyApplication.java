@@ -20,6 +20,8 @@ public class MyApplication extends Application{
         super.onCreate();
         x.Ext.init(this);
 
+    //    Modle.getInstance().init(this);
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .addInterceptor(new LoggerInterceptor("TAG"))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)

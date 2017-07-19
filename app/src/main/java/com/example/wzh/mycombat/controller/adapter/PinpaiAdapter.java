@@ -13,6 +13,7 @@ import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.modle.bean.PpBean;
 import com.example.wzh.mycombat.utils.OnItemClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,10 +22,9 @@ import java.util.List;
 
 public class PinpaiAdapter extends RecyclerView.Adapter<PinpaiAdapter.MyViewHolder> implements View.OnClickListener{
     Context mContext;
-    List<PpBean.DataBean.ItemsBean> datas;
+    List<PpBean.DataBean.ItemsBean> datas = new ArrayList<>();
     private OnItemClickListener mOnItemClickListener;
-    public PinpaiAdapter(Context mContext, List<PpBean.DataBean.ItemsBean> datas) {
-        this.datas = datas;
+    public PinpaiAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -61,6 +61,13 @@ public class PinpaiAdapter extends RecyclerView.Adapter<PinpaiAdapter.MyViewHold
         if (mOnItemClickListener != null) {
             mOnItemClickListener.onItemClick(view);
         }
+    }
+
+    public void setDatas( List<PpBean.DataBean.ItemsBean> trailers) {
+//            }
+            datas.addAll(trailers);
+            notifyDataSetChanged();
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

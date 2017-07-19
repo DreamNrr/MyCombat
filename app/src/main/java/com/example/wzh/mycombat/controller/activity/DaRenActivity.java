@@ -104,7 +104,7 @@ public class DaRenActivity extends BaseActivity implements OnItemClickListener {
         Log.e("TAG","url======" + EXPERT_INFR_URL+uid);
 
         tvTitle.setText(username);
-        Glide.with(this).asBitmap().load(imurl).into(imageview);
+        Glide.with(this).load(imurl).asBitmap().into(imageview);
         name.setText(username);
         zhiye.setText(duty);
 

@@ -14,8 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
 import com.example.wzh.mycombat.controller.adapter.PinPaiXQAdapter;
@@ -88,9 +88,9 @@ public class PinPaiActivity extends BaseActivity {
         bid = getIntent().getIntExtra("BID", -1);
         brand_logo = getIntent().getStringExtra("brand_logo");
         brand_name = getIntent().getStringExtra("brand_name");
-        Glide.with(this).asBitmap().load(brand_logo).into(new SimpleTarget<Bitmap>() {
+        Glide.with(this).load(brand_logo).asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
-            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 logoIv.setImageBitmap(ImageUtils.toRound(resource));
             }
         });

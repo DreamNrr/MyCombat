@@ -128,7 +128,7 @@ public class GoodsInfoActivity extends BaseActivity {
         discountPrice.setText(bean.getData().getItems().getPrice());
         tvLikeCount.setText(bean.getData().getItems().getLike_count());
         //logo图片
-        Glide.with(this).asBitmap().load(bean.getData().getItems().getBrand_info().getBrand_logo()).into(ivLogo);
+        Glide.with(this).load(bean.getData().getItems().getBrand_info().getBrand_logo()).asBitmap().into(ivLogo);
         //logo名字
         tvBrandName.setText(bean.getData().getItems().getBrand_info().getBrand_name());
         images_item = bean.getData().getItems().getImages_item();
@@ -142,7 +142,7 @@ public class GoodsInfoActivity extends BaseActivity {
         if (goods_info != null && goods_info.size() > 0) {
             for (int i = 0; i < goods_info.size(); i++) {
                 ImageView imageView = new ImageView(this);
-                Glide.with(this).asBitmap().load(goods_info.get(i).getContent().getImg()).into(imageView);
+                Glide.with(this).load(goods_info.get(i).getContent().getImg()).asBitmap().into(imageView);
                 llGoodsDetailsIv.addView(imageView);
             }
         }
@@ -216,7 +216,7 @@ public class GoodsInfoActivity extends BaseActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ImageView imageView = new ImageView(GoodsInfoActivity.this);
-            Glide.with(GoodsInfoActivity.this).asBitmap().load(images_item.get(position)).into(imageView);
+            Glide.with(GoodsInfoActivity.this).load(images_item.get(position)).asBitmap().into(imageView);
             Log.e("TAA", "图片====" + images_item.get(position));
             container.addView(imageView);
             return imageView;

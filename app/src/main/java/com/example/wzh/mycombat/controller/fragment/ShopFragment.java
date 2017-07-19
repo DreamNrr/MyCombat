@@ -58,6 +58,11 @@ public class ShopFragment extends BaseFragment {
         tab.getTabAt(0).select();
     }
 
+    @Override
+    public void initListener() {
+        super.initListener();
+
+    }
 
     @Override
     public void onDestroyView() {

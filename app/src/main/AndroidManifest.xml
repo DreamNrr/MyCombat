@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wzh.mycombat">
-
+    <!-- Required -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".controller.activity.MainActivity" />
         <activity android:name=".controller.activity.FenleiActivity" />
         <activity android:name=".controller.activity.ShowImageAndGifActivity" />
@@ -26,7 +27,8 @@
         <activity android:name=".controller.activity.LiWuActivity" />
         <activity android:name=".controller.activity.DaRenActivity" />
         <activity android:name=".controller.activity.ZaZhiActivity" />
-        <activity android:name=".controller.activity.GoodsInfoActivity"></activity>
+        <activity android:name=".controller.activity.GoodsInfoActivity" />
+        <activity android:name=".controller.activity.LoginActivity"></activity>
     </application>
 
 </manifest>
