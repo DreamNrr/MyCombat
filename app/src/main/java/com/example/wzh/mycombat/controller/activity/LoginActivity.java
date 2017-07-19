@@ -1,6 +1,5 @@
 package com.example.wzh.mycombat.controller.activity;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
 import com.example.wzh.mycombat.common.AppNetConfig;
 import com.example.wzh.mycombat.modle.db.DBHelper;
+import com.example.wzh.mycombat.utils.CacheUtils;
 import com.example.wzh.mycombat.utils.HttpUtils;
 
 import org.json.JSONException;
@@ -143,8 +144,8 @@ public class LoginActivity extends BaseActivity {
               @Override
               public void onSuccess(String json) {
                   Log.e("TAG", "onSuccess: " + json);
-                  startActivity(new Intent(LoginActivity.this,ShoppingActivity.class));
-
+                  Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                  CacheUtils.putBoolean(LoginActivity.this,"Login",true);
                   finish();
               }
 
@@ -196,6 +197,7 @@ public class LoginActivity extends BaseActivity {
                                     passwordEt.setText(password2);
                                     //保存到数据库
                                     database.execSQL("insert into contact(username,password) values('" + name + "','" + password2 + "')");
+                                    database.close();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

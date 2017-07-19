@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
 import com.example.wzh.mycombat.modle.bean.GoogsBean;
+import com.example.wzh.mycombat.utils.CacheUtils;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -84,9 +85,10 @@ public class GoodsInfoActivity extends BaseActivity {
     private String goods_id;
     private GoogsBean bean;
     private List<String> images_item;
+    private Intent intent;
 
 //    private List<GoogsBean.DataBean.ItemsBean.BrandInfoBean> datas;
-
+    private boolean isStartMain ;
 
     @Override
     public int getLayoutId() {
@@ -96,8 +98,9 @@ public class GoodsInfoActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        isStartMain =  CacheUtils.getBoolean(GoodsInfoActivity.this,"Login");
         goods_id = getIntent().getStringExtra("goods_id");
+        Log.e("TAA","URL===" +BRAND_GOODS_DETAILS_URL + goods_id );
         getFromNet();
     }
 
@@ -177,13 +180,23 @@ public class GoodsInfoActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.rb_add_cart:
+
                         //判断是否登录过
-                        //是
-                        Intent intent = new Intent(GoodsInfoActivity.this, GoodsXQActivity.class);
-                        startActivity(intent);
+                        //是---进入购物车页面
+                        if(isStartMain){
+                            //直接进入购物车页面
+                            intent = new Intent(GoodsInfoActivity.this, ShoppingActivity.class);
+                            startActivity(intent);
+                            //没有登陆过
+                        }else{
+                            //进入登录页面
+                            intent = new Intent(GoodsInfoActivity.this,LoginActivity.class);
+                            startActivity(intent);
+                        }
                         //否---跳转登录页面
                         break;
                     case R.id.rg_buy_cart:
+                        //调起支付宝
                         break;
                 }
             }
@@ -193,7 +206,7 @@ public class GoodsInfoActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ib_back, R.id.ib_shopping,R.id.ll_logo})
+    @OnClick({R.id.ib_back, R.id.ib_shopping,R.id.ll_logo,R.id.ll_select_size})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ib_back:
@@ -202,12 +215,31 @@ public class GoodsInfoActivity extends BaseActivity {
             case R.id.ib_shopping:
                 break;
             case R.id.ll_logo:
-                Intent intent = new Intent(GoodsInfoActivity.this, PinPaiActivity.class);
+                intent = new Intent(GoodsInfoActivity.this, PinPaiActivity.class);
                 intent.putExtra("brand_logo",bean.getData().getItems().getBrand_info().getBrand_logo());
                 intent.putExtra("brand_name",bean.getData().getItems().getBrand_info().getBrand_name());
                 int brand_id = Integer.parseInt(bean.getData().getItems().getBrand_info().getBrand_id());
                 intent.putExtra("BID",brand_id);
                 startActivity(intent);
+                break;
+            case R.id.ll_select_size:
+
+                //登陆过
+                if(isStartMain){
+                    //直接进入选择数量加入购物车页面
+                    intent = new Intent(GoodsInfoActivity.this, GoodsXQActivity.class);
+                    intent.putExtra("image",bean.getData().getItems().getGoods_image());
+                    intent.putExtra("brand_name",bean.getData().getItems().getBrand_info().getBrand_name());
+                    intent.putExtra("goods_name",bean.getData().getItems().getGoods_name());
+                    intent.putExtra("price",bean.getData().getItems().getPrice());
+                    intent.putExtra("url",BRAND_GOODS_DETAILS_URL + goods_id);
+                    startActivity(intent);
+                    //没有登陆过
+                }else{
+                    //进入登录页面
+                    intent = new Intent(GoodsInfoActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
     }

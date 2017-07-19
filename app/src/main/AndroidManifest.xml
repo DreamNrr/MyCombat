@@ -30,7 +30,7 @@
         <activity android:name=".controller.activity.GoodsInfoActivity" />
         <activity android:name=".controller.activity.LoginActivity" />
         <activity android:name=".controller.activity.ShoppingActivity" />
-        <activity android:name=".controller.activity.GoodsXQActivity"></activity>
+        <activity android:name=".controller.activity.GoodsXQActivity" android:theme="@style/TransluteTheme"></activity>
     </application>
 
 </manifest>

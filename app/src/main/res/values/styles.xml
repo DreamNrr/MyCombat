@@ -7,6 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="TransluteTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/translucent</item>
+    </style>
     <style name="myStyle" >
         <!-- Customize your theme here. -->
         <item name="android:layout_width">0dp</item>
