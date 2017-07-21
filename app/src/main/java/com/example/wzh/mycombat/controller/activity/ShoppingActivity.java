@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
+import com.example.wzh.mycombat.controller.adapter.DBAdapter;
 import com.example.wzh.mycombat.modle.bean.DBBean;
 import com.example.wzh.mycombat.modle.db.DBHelper;
 
@@ -75,6 +76,7 @@ public class ShoppingActivity extends BaseActivity {
     private SQLiteDatabase database;
     private ArrayList<DBBean> dblist;
     private Cursor cursor;
+    private DBAdapter adapter;
 
     @Override
     public int getLayoutId() {
@@ -89,6 +91,14 @@ public class ShoppingActivity extends BaseActivity {
         database = dbHelper.getReadableDatabase();
 
         selectFromDatabase();
+
+        setDataToAdapter();
+
+    }
+
+    private void setDataToAdapter() {
+        adapter = new DBAdapter(this,dblist);
+        cartLv.setAdapter(adapter);
 
     }
 
@@ -115,7 +125,10 @@ public class ShoppingActivity extends BaseActivity {
 
             dblist.add(p);
         }
+        cursor.close();
         Log.e("AAA","数据===" + dblist);
+
+
     }
 
     @Override
