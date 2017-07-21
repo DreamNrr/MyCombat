@@ -144,8 +144,8 @@ public class LoginActivity extends BaseActivity {
               @Override
               public void onSuccess(String json) {
                   Log.e("TAG", "onSuccess: " + json);
-                  Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                   CacheUtils.putBoolean(LoginActivity.this,"Login",true);
+                  Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                   finish();
               }
 

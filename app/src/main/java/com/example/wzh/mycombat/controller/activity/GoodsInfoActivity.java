@@ -185,7 +185,12 @@ public class GoodsInfoActivity extends BaseActivity {
                         //是---进入购物车页面
                         if(isStartMain){
                             //直接进入购物车页面
-                            intent = new Intent(GoodsInfoActivity.this, ShoppingActivity.class);
+                            intent = new Intent(GoodsInfoActivity.this, GoodsXQActivity.class);
+                            intent.putExtra("image",bean.getData().getItems().getGoods_image());
+                            intent.putExtra("brand_name",bean.getData().getItems().getBrand_info().getBrand_name());
+                            intent.putExtra("goods_name",bean.getData().getItems().getGoods_name());
+                            intent.putExtra("price",bean.getData().getItems().getPrice());
+                            intent.putExtra("url",BRAND_GOODS_DETAILS_URL + goods_id);
                             startActivity(intent);
                             //没有登陆过
                         }else{

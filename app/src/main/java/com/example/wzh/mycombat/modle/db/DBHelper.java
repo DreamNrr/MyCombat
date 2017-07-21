@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.wzh.mycombat.modle.table.ContactTable;
+import com.example.wzh.mycombat.modle.table.GoodsTable;
 
 
 /**
@@ -20,6 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(ContactTable.CREATE_TABLE);
+        sqLiteDatabase.execSQL(GoodsTable.CREATE_TABLE);
     }
 
     @Override
