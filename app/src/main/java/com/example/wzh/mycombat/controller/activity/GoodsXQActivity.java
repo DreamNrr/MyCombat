@@ -89,6 +89,7 @@ public class GoodsXQActivity extends BaseActivity {
     private FlowRadioGroup flowRadioGroup;
     public String attr_id = "";
     private int counts;
+    private String image;
 
     @Override
     public int getLayoutId() {
@@ -103,7 +104,7 @@ public class GoodsXQActivity extends BaseActivity {
         //连接数据库
         database = dbHelper.getReadableDatabase();
 
-        String image = getIntent().getStringExtra("image");
+        image = getIntent().getStringExtra("image");
         String brand_name = getIntent().getStringExtra("brand_name");
         goods_name = getIntent().getStringExtra("goods_name");
         price = getIntent().getStringExtra("price");
@@ -113,7 +114,7 @@ public class GoodsXQActivity extends BaseActivity {
         brandNameTv.setText(brand_name);
         goodNameTv.setText(goods_name);
         priceTv.setText(price);
-
+        Log.e("AAA","imagePatch== " + imagePath);
         getFromNet();
     }
 
@@ -161,8 +162,11 @@ public class GoodsXQActivity extends BaseActivity {
                 for (int j = 0; j < datas.get(i).getAttrList().size(); j++) {
                     flowRadioGroup.setOrientation(FlowRadioGroup.HORIZONTAL);
                     final List<GoogsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> listdatas = datas.get(i).getAttrList();
-                    final int size = listdatas.size();
+//                    final int size = listdatas.size();
+
                     String attr_name = listdatas.get(j).getAttr_name();
+                    imagePath = listdatas.get(j).getImg_path();
+
                     final RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(attr_name);
                     Log.e("QQQ", "attr_name===" + attr_name);
@@ -187,20 +191,22 @@ public class GoodsXQActivity extends BaseActivity {
 
                     final int finalI = i;
                     //skuLl.addView(flowRadioGroup);
-                    final int finalJ = j;
 
-//                    radioButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            sku_goods.put(textView.getText().toString(), radioButton.getText().toString());
-//                            Log.e("QQQ", "sku_goods===" + sku_goods);
-//                            Log.e("QQQ", "attr_keys===" + sku_goods);
-//                        }
-//                    });
                     radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             if (b) {
+
+                                if (!TextUtils.isEmpty(imagePath)) {
+                                    Glide.with(GoodsXQActivity.this).load(imagePath).asBitmap().into(skuIv);
+                                    Log.e("AAA","imagePatchFromJ=imagePath== " + imagePath);
+
+                                    }else{
+                                    Glide.with(GoodsXQActivity.this).load(image).asBitmap().into(skuIv);
+                                    Log.e("AAA","imagePatchFromJ=image== " + image);
+                                    imagePath = image;
+
+                                }
 
                                 sku_goods.put(textView.getText().toString(), compoundButton.getText().toString());
                                 Log.e("QQQ", "sku_goods===" + sku_goods);
@@ -209,7 +215,7 @@ public class GoodsXQActivity extends BaseActivity {
                                 //设置种类组合，根据组合的attr_id获取价格
 //                                listdatas.get(j).getAttr_id();
                                 Log.e("TAG", "radiobttonid" + compoundButton.getId() + "");
-                                Log.e("TAG", size + "");
+//                                Log.e("TAG", size + "");
                                 attr_keys.put(String.valueOf(finalI), listdatas.get(compoundButton.getId()).getAttr_id());
                                 for (int i2 = 0; i2 < attr_keys.size(); i2++) {
                                     String s = attr_keys.get(String.valueOf(i2));
@@ -239,10 +245,8 @@ public class GoodsXQActivity extends BaseActivity {
                                 // radioButton.setBackground(getResources().getDrawable(R.drawable.attr_bg_check));
 
                             }
-                            if (!TextUtils.isEmpty(listdatas.get(finalJ).getImg_path())) {
-                                Glide.with(GoodsXQActivity.this).load(listdatas.get(finalJ).getImg_path()).asBitmap().into(skuIv);
-                                imagePath = listdatas.get(finalJ).getImg_path();
-                            }
+                            //listdatas.get(finalJ).getImg_path()
+
                         }
                     });
                     flowRadioGroup.addView(radioButton, layoutParams);
@@ -277,7 +281,7 @@ public class GoodsXQActivity extends BaseActivity {
                     content = content + entry.getKey() + ":" + entry.getValue() + ";";
                     Log.e("TAA","content===" + content);
                 }
-                Log.e("WWW","全部要传的数据===图片：" +imagePath
+                Log.e("AAA","全部要传的数据===图片：" +imagePath
                         + " 名字：" +goods_name  + " 价格：" + priceTv.getText().toString() + " 内容：" + content + " 数量："  + counts);
 /**
  *
@@ -288,6 +292,7 @@ public class GoodsXQActivity extends BaseActivity {
  public static final String GOODS_CONTENT = "content";
  public static final String GOODS_COUNT = "count";
  */
+
                 database.execSQL(
                         "insert into goods(imageUrl,goodsName,price,content,count) " +
                                 "values('"+imagePath+"','"
@@ -297,6 +302,7 @@ public class GoodsXQActivity extends BaseActivity {
                                 +counts+"')");
                 database.close();
                 showToast("加购成功");
+                finish();
 
             }
         });

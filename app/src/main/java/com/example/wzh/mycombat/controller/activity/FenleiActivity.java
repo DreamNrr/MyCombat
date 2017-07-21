@@ -14,6 +14,7 @@ import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseActivity;
 import com.example.wzh.mycombat.controller.adapter.FenleiXqingAdapter;
 import com.example.wzh.mycombat.modle.bean.FLXBean;
+import com.example.wzh.mycombat.utils.CacheUtils;
 import com.example.wzh.mycombat.utils.OnItemClickListener;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -50,6 +51,8 @@ public class FenleiActivity extends BaseActivity {
     LinearLayout activityFenlei;
     private FenleiXqingAdapter adapter;
     private String url;
+    private boolean isStartMain;
+    private Intent intent;
 
     @Override
     public int getLayoutId() {
@@ -74,7 +77,24 @@ public class FenleiActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+        ibShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isStartMain =  CacheUtils.getBoolean(FenleiActivity.this,"Login");
 
+                if(isStartMain){
+                    //直接进入购物车页面
+                    intent = new Intent(FenleiActivity.this, ShoppingActivity.class);
+                    startActivity(intent);
+                    //没有登陆过
+                }else{
+                    //进入登录页面
+                    intent = new Intent(FenleiActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
     }
 
     private void getFromNet() {

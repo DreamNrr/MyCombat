@@ -21,6 +21,7 @@ import com.example.wzh.mycombat.controller.fragment.GoodFragment;
 import com.example.wzh.mycombat.controller.fragment.MagazineFragment;
 import com.example.wzh.mycombat.controller.fragment.SelfFragment;
 import com.example.wzh.mycombat.controller.fragment.ShopFragment;
+import com.example.wzh.mycombat.utils.CacheUtils;
 import com.example.wzh.mycombat.utils.DateChange;
 
 import java.text.SimpleDateFormat;
@@ -69,6 +70,8 @@ public class MainActivity extends BaseActivity {
     private List<BaseFragment> fragments;
     private BaseFragment tempFragment;
     private int position = 0;
+    private boolean isStartMain ;
+    private Intent intent;
 
     @Override
     public int getLayoutId() {
@@ -90,6 +93,7 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.fraglayout, tempFragment);
         ft.commit();
+
     }
 
     @Override
@@ -106,7 +110,19 @@ public class MainActivity extends BaseActivity {
         ibShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+
+                isStartMain =  CacheUtils.getBoolean(MainActivity.this,"Login");
+
+                if(isStartMain){
+                    //直接进入购物车页面
+                    intent = new Intent(MainActivity.this, ShoppingActivity.class);
+                    startActivity(intent);
+                    //没有登陆过
+                }else{
+                    //进入登录页面
+                    intent = new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

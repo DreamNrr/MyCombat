@@ -98,7 +98,7 @@ public class GoodsInfoActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        isStartMain =  CacheUtils.getBoolean(GoodsInfoActivity.this,"Login");
+
         goods_id = getIntent().getStringExtra("goods_id");
         Log.e("TAA","URL===" +BRAND_GOODS_DETAILS_URL + goods_id );
         getFromNet();
@@ -180,7 +180,7 @@ public class GoodsInfoActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.rb_add_cart:
-
+                        isStartMain =  CacheUtils.getBoolean(GoodsInfoActivity.this,"Login");
                         //判断是否登录过
                         //是---进入购物车页面
                         if(isStartMain){
@@ -228,7 +228,7 @@ public class GoodsInfoActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.ll_select_size:
-
+                isStartMain =  CacheUtils.getBoolean(GoodsInfoActivity.this,"Login");
                 //登陆过
                 if(isStartMain){
                     //直接进入选择数量加入购物车页面
