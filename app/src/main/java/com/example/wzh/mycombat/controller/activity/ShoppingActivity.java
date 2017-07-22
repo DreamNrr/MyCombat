@@ -77,6 +77,12 @@ public class ShoppingActivity extends BaseActivity {
     private ArrayList<DBBean> dblist;
     private Cursor cursor;
     private DBAdapter adapter;
+    //编辑状态
+    private static final int ACTION_EDIT = 1;
+    //完成状态
+    private static final int ACTION_COMPLETE = 2;
+    private int viewType = 0;
+
 
     @Override
     public int getLayoutId() {
@@ -97,7 +103,7 @@ public class ShoppingActivity extends BaseActivity {
     }
 
     private void setDataToAdapter() {
-        adapter = new DBAdapter(this,dblist,allCheck,payFeeTv);
+        adapter = new DBAdapter(this,dblist,allCheck,payFeeTv,viewType);
         cartLv.setAdapter(adapter);
 //        adapter.boxisAllChick();
 //        adapter.isAllChick(true);
@@ -135,6 +141,7 @@ public class ShoppingActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+        allCheck.setChecked(false);
         allCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,7 +155,74 @@ public class ShoppingActivity extends BaseActivity {
                 adapter.isAllChick(checked);
             }
         });
+
+
+        //设置编辑状态
+        ivEdit.setTag(ACTION_EDIT);
+        ivEdit.setText("编辑");
+        //显示去结算布局
+        //  llCheckAll.setVisibility(View.VISIBLE);
+
+        ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //1.得到状态
+                int action = (int) v.getTag();
+                //2.根据不同状态做不同的处理
+                if (action == ACTION_EDIT) {
+                    //切换完成状态
+                   showDelete();
+                } else {
+                    //切换成编辑状态
+                    hideDelete();
+                }
+            }
+        });
+
     }
+
+    private void hideDelete() {
+        //1.设置编辑
+        ivEdit.setTag(ACTION_EDIT);
+//        //2.隐藏删除控件
+//        llDelete.setVisibility(View.GONE);
+//        //3.显示结算控件
+//        llCheckAll.setVisibility(View.VISIBLE);
+        //4.设置文本为-编辑
+        ivEdit.setText("编辑");
+        viewType = 0;
+        adapter.setViewType(0);
+        adapter.notifyDataSetChanged();
+        //5.把所有的数据设置勾选择状态
+//        if(adapter != null){
+//            adapter.isAllChick(true);
+//            adapter.boxisAllChick();
+//            adapter.showTotalPrice();
+//        }
+
+    }
+
+    private void showDelete() {
+        //1.设置完成
+        ivEdit.setTag(ACTION_COMPLETE);
+//        //2.显示删除控件
+//        llDelete.setVisibility(View.VISIBLE);
+//        //3.隐藏结算控件
+//        llCheckAll.setVisibility(View.GONE);
+        //4.设置文本为-完成
+        ivEdit.setText("完成");
+        viewType = 1;
+        adapter.setViewType(1);
+        adapter.notifyDataSetChanged();
+        //5.把所有的数据设置非选择状态
+//        if(adapter != null){
+//            adapter.checkAll_none(false);
+//            adapter.checkAll();
+//            adapter.showTotalPrice();
+//        }
+    }
+
+
 
 
     @OnClick({R.id.ib_back, R.id.iv_edit, R.id.iv_complete})
