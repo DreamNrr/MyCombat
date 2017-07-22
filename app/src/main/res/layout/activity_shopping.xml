@@ -47,6 +47,7 @@
                     android:layout_gravity="center|right"
                     android:layout_marginRight="17.5dip"
                     android:textColor="#ffadadad"
+                    android:text="￥0.00"
                     android:textSize="11.0sp" />
             </FrameLayout>
 
@@ -78,6 +79,7 @@
                     android:layout_gravity="center|right"
                     android:layout_marginRight="17.5dip"
                     android:textColor="#ffadadad"
+                    android:text="￥0.00"
                     android:textSize="11.0sp" />
             </FrameLayout>
 
@@ -109,6 +111,7 @@
                     android:layout_gravity="center|right"
                     android:layout_marginRight="17.5dip"
                     android:textColor="#ffadadad"
+                    android:text="￥0.00"
                     android:textSize="11.0sp" />
             </FrameLayout>
 

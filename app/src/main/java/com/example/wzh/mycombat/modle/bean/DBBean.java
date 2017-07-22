@@ -14,6 +14,7 @@ package com.example.wzh.mycombat.modle.bean;
  */
 
 public class DBBean {
+    private boolean isChicked;
     private String imageUrl;
     private String goodsName;
     private String price;
@@ -26,6 +27,14 @@ public class DBBean {
         this.price = price;
         this.content = content;
         this.count = count;
+    }
+
+    public boolean isChicked() {
+        return isChicked;
+    }
+
+    public void setChicked(boolean chicked) {
+        isChicked = chicked;
     }
 
     public String getImageUrl() {

@@ -97,9 +97,11 @@ public class ShoppingActivity extends BaseActivity {
     }
 
     private void setDataToAdapter() {
-        adapter = new DBAdapter(this,dblist);
+        adapter = new DBAdapter(this,dblist,allCheck,payFeeTv);
         cartLv.setAdapter(adapter);
-
+//        adapter.boxisAllChick();
+//        adapter.isAllChick(true);
+//        adapter.showTotalPrice();
     }
 
     private void selectFromDatabase() {
@@ -133,7 +135,19 @@ public class ShoppingActivity extends BaseActivity {
 
     @Override
     public void initListener() {
-
+        allCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //根据外层的按钮选择状态改变里层的按钮状态
+                /*
+                1.获取外层按钮的状态---布尔--选中或未选中
+                2.把获取到的状态全部赋值给里层的按钮
+                 */
+                boolean checked =  allCheck.isChecked();
+                //全选、反选
+                adapter.isAllChick(checked);
+            }
+        });
     }
 
 
