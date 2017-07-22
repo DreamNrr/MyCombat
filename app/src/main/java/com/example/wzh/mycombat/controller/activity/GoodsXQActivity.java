@@ -90,6 +90,7 @@ public class GoodsXQActivity extends BaseActivity {
     public String attr_id = "";
     private int counts;
     private String image;
+    private String did;
 
     @Override
     public int getLayoutId() {
@@ -109,6 +110,7 @@ public class GoodsXQActivity extends BaseActivity {
         goods_name = getIntent().getStringExtra("goods_name");
         price = getIntent().getStringExtra("price");
         url = getIntent().getStringExtra("url");
+        Log.e("TAA","url==========" + url);
 
         Glide.with(this).load(image).asBitmap().into(skuIv);
         brandNameTv.setText(brand_name);
@@ -143,6 +145,7 @@ public class GoodsXQActivity extends BaseActivity {
         datas = bean.getData().getItems().getSku_info();
         items = bean.getData().getItems();
         sku_inv = items.getSku_inv();
+
         if (datas != null && datas.size() > 0) {
             for (int i = 0; i < datas.size(); i++) {
                 String type_name = datas.get(i).getType_name();
@@ -166,6 +169,10 @@ public class GoodsXQActivity extends BaseActivity {
 
                     String attr_name = listdatas.get(j).getAttr_name();
                     imagePath = listdatas.get(j).getImg_path();
+
+                    //向数据库传入的唯一id
+                    did =  items.getGoods_id() + listdatas.get(j).getAttr_id();
+                    Log.e("AAA","did=====" + did);
 
                     final RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(attr_name);
@@ -281,11 +288,13 @@ public class GoodsXQActivity extends BaseActivity {
                     content = content + entry.getKey() + ":" + entry.getValue() + ";";
                     Log.e("TAA","content===" + content);
                 }
-                Log.e("AAA","全部要传的数据===图片：" +imagePath
+                Log.e("AAA","全部要传的数据===" + "ID==" + did + "图片：" +imagePath
                         + " 名字：" +goods_name  + " 价格：" + priceTv.getText().toString() + " 内容：" + content + " 数量："  + counts);
 /**
  *
+ *
  public static final String TABLE_NAME = "goods";
+ public static final String ID = "ID";
  public static final String GOODS_IMURL = "imageUrl";
  public static final String GOODS_NAME = "goodsName";
  public static final String GOODS_PRICE = "price";
@@ -294,8 +303,9 @@ public class GoodsXQActivity extends BaseActivity {
  */
 
                 database.execSQL(
-                        "insert into goods(imageUrl,goodsName,price,content,count) " +
-                                "values('"+imagePath+"','"
+                        "insert into goods(ID,imageUrl,goodsName,price,content,count) " +
+                                "values('"+ did +"','"
+                                +imagePath+"','"
                                 +goods_name+"','"
                                 +priceTv.getText().toString()+"','"
                                 +content+"','"

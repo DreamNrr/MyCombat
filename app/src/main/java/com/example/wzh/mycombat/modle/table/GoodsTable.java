@@ -9,6 +9,8 @@ public class GoodsTable {
 
 
     public static final String TABLE_NAME = "goods";
+
+    public static final String ID = "ID";
     public static final String GOODS_IMURL = "imageUrl";
     public static final String GOODS_NAME = "goodsName";
     public static final String GOODS_PRICE = "price";
@@ -16,6 +18,7 @@ public class GoodsTable {
     public static final String GOODS_COUNT = "count";
 
     public static final String CREATE_TABLE = "create table "+TABLE_NAME+"("
+            +ID+" text primary key,"
             +GOODS_IMURL+" text ,"
             +GOODS_NAME +" text, "
             +GOODS_PRICE +" text, "

@@ -15,18 +15,28 @@ package com.example.wzh.mycombat.modle.bean;
 
 public class DBBean {
     private boolean isChicked;
+    private String did;
     private String imageUrl;
     private String goodsName;
     private String price;
     private String content;
     private int count;
 
-    public DBBean(String imageUrl, String goodsName, String price, String content, int count) {
+    public DBBean( String did,String imageUrl, String goodsName, String price, String content, int count) {
+        this.did = did;
         this.imageUrl = imageUrl;
         this.goodsName = goodsName;
         this.price = price;
         this.content = content;
         this.count = count;
+    }
+
+    public String getDid() {
+        return did;
+    }
+
+    public void setDid(String did) {
+        this.did = did;
     }
 
     public boolean isChicked() {

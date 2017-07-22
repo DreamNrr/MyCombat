@@ -1,6 +1,8 @@
 package com.example.wzh.mycombat.controller.adapter;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -18,6 +20,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.modle.bean.DBBean;
+import com.example.wzh.mycombat.modle.db.DBHelper;
 import com.example.wzh.mycombat.utils.ImageUtils;
 import com.example.wzh.mycombat.view.AddSubView;
 
@@ -30,12 +33,15 @@ import butterknife.InjectView;
  * Created by WZH on 2017/7/21.
  */
 public class DBAdapter extends BaseAdapter {
+    private final SQLiteDatabase database;
     private Context context;
     private ArrayList<DBBean> dblist;
     private CheckBox allCheck;
     private TextView payFeeTv;
 
     private int viewType = 0;
+
+    private DBHelper dbHelper;
 
 
     public void setViewType(int viewType) {
@@ -49,6 +55,8 @@ public class DBAdapter extends BaseAdapter {
         this.allCheck = allCheck;
         this.payFeeTv = payFeeTv;
         this.viewType = viewType;
+        dbHelper = new DBHelper(context);
+        database = dbHelper.getReadableDatabase();
     }
 
     @Override
@@ -77,6 +85,7 @@ public class DBAdapter extends BaseAdapter {
             //有删除
             case 1:
                  view = typeview1(i, view);
+
                 break;
         }
 
@@ -186,16 +195,35 @@ public class DBAdapter extends BaseAdapter {
                 showTotalPrice();
                 notifyDataSetChanged();
                 //把count修改的值保存到数据库！！！
+                //update goods set count = 5 where ID = 1
+//                int value1 = dblist.get(i).getCount();
+                Log.e("TAA", "value==" + value);
+                Log.e("TAA", "dbLisstDid==" + dblist.get(i).getDid());
+                ContentValues values= new ContentValues();
+                values.put("count",value);
+                database.update("goods",values,"ID=?", new String[]{dblist.get(i).getDid()});
+//                database.execSQL(
+//                        "update goods set count = " + value  + " where ID = '" + did + "'");
+
+//                database.close();
             }
         });
+
+
+
         editHolder.btDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dblist.remove(dblist.get(i));
-                notifyDataSetChanged();
                 //从数据库中栓除这一条数据----根据商品的id
+                database.delete("goods","ID=?", new String[]{dblist.get(i).getDid()});
+
+                dblist.remove(dblist.get(i));
+
+                notifyDataSetChanged();
             }
         });
+
+
 
         return view;
     }

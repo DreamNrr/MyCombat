@@ -77,10 +77,6 @@ public class ShoppingActivity extends BaseActivity {
     private ArrayList<DBBean> dblist;
     private Cursor cursor;
     private DBAdapter adapter;
-    //编辑状态
-    private static final int ACTION_EDIT = 1;
-    //完成状态
-    private static final int ACTION_COMPLETE = 2;
     private int viewType = 0;
 
 
@@ -115,6 +111,7 @@ public class ShoppingActivity extends BaseActivity {
         //从数据库里面把数据取出来
 /*
  public static final String TABLE_NAME = "goods";
+  public static final String ID = "ID";
  public static final String GOODS_IMURL = "imageUrl";
  public static final String GOODS_NAME = "goodsName";
  public static final String GOODS_PRICE = "price";
@@ -124,12 +121,13 @@ public class ShoppingActivity extends BaseActivity {
 
         cursor = database.query("goods", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
+            String did = cursor.getString(cursor.getColumnIndex("ID"));
             String imageUrl = cursor.getString(cursor.getColumnIndex("imageUrl"));
             String goodsName = cursor.getString(cursor.getColumnIndex("goodsName"));
             String price = cursor.getString(cursor.getColumnIndex("price"));
             String content = cursor.getString(cursor.getColumnIndex("content"));
             int count = cursor.getInt(cursor.getColumnIndex("count"));
-            DBBean p=new DBBean(imageUrl, goodsName, price, content,count);
+            DBBean p=new DBBean(did,imageUrl, goodsName, price, content,count);
 
             dblist.add(p);
         }
@@ -150,106 +148,70 @@ public class ShoppingActivity extends BaseActivity {
                 1.获取外层按钮的状态---布尔--选中或未选中
                 2.把获取到的状态全部赋值给里层的按钮
                  */
-                boolean checked =  allCheck.isChecked();
+                boolean checked = allCheck.isChecked();
                 //全选、反选
                 adapter.isAllChick(checked);
             }
         });
 
 
-        //设置编辑状态
-        ivEdit.setTag(ACTION_EDIT);
-        ivEdit.setText("编辑");
-        //显示去结算布局
-        //  llCheckAll.setVisibility(View.VISIBLE);
-
         ivEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //1.得到状态
-                int action = (int) v.getTag();
-                //2.根据不同状态做不同的处理
-                if (action == ACTION_EDIT) {
-                    //切换完成状态
-                   showDelete();
-                } else {
-                    //切换成编辑状态
-                    hideDelete();
-                }
+                showDelete();
             }
         });
-
     }
 
-    private void hideDelete() {
-        //1.设置编辑
-        ivEdit.setTag(ACTION_EDIT);
-//        //2.隐藏删除控件
-//        llDelete.setVisibility(View.GONE);
-//        //3.显示结算控件
-//        llCheckAll.setVisibility(View.VISIBLE);
-        //4.设置文本为-编辑
-        ivEdit.setText("编辑");
-        viewType = 0;
-        adapter.setViewType(0);
-        adapter.notifyDataSetChanged();
-        //5.把所有的数据设置勾选择状态
-//        if(adapter != null){
-//            adapter.isAllChick(true);
-//            adapter.boxisAllChick();
-//            adapter.showTotalPrice();
-//        }
+            private void hideDelete() {
+                ivComplete.setVisibility(View.GONE);
+                ivEdit.setVisibility(View.VISIBLE);
+                viewType = 0;
+                adapter.setViewType(0);
+                adapter.notifyDataSetChanged();
 
-    }
+            }
 
-    private void showDelete() {
-        //1.设置完成
-        ivEdit.setTag(ACTION_COMPLETE);
-//        //2.显示删除控件
-//        llDelete.setVisibility(View.VISIBLE);
-//        //3.隐藏结算控件
-//        llCheckAll.setVisibility(View.GONE);
-        //4.设置文本为-完成
-        ivEdit.setText("完成");
-        viewType = 1;
-        adapter.setViewType(1);
-        adapter.notifyDataSetChanged();
-        //5.把所有的数据设置非选择状态
-//        if(adapter != null){
-//            adapter.checkAll_none(false);
-//            adapter.checkAll();
-//            adapter.showTotalPrice();
-//        }
-    }
+            private void showDelete() {
+                ivComplete.setVisibility(View.VISIBLE);
+                ivEdit.setVisibility(View.GONE);
+                ivEdit.setText("完成");
+                viewType = 1;
+                adapter.setViewType(1);
+                adapter.notifyDataSetChanged();
+
+            }
 
 
-
-
-    @OnClick({R.id.ib_back, R.id.iv_edit, R.id.iv_complete})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ib_back:
-                ShoppingActivity.this.finish();
-                break;
-            case R.id.iv_edit:
-                //编辑的点击事件
-                break;
-            case R.id.iv_complete:
-                //完成的点击事件
-                break;
-        }
-    }
-
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(database != null) {
-            database.close();
-        }
-        if(cursor != null) {
-            cursor.close();
-        }
-    }
+            @OnClick({R.id.ib_back, R.id.iv_edit, R.id.iv_complete})
+            public void onViewClicked(View view) {
+                switch (view.getId()) {
+                    case R.id.ib_back:
+                        ShoppingActivity.this.finish();
+                        break;
+                    case R.id.iv_edit:
+                        //编辑的点击事件
+                        showDelete();
+                        break;
+                    case R.id.iv_complete:
+                        //完成的点击事件
+                        hideDelete();
+                        break;
+                }
+            }
+            @Override
+            protected void onDestroy() {
+                super.onDestroy();
+                if(database != null) {
+                    database.close();
+                }
+                if(cursor != null) {
+                    cursor.close();
+                }
+            }
 }
+
+
+
+
+
