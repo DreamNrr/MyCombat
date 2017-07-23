@@ -211,13 +211,36 @@ public class GoodsInfoActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ib_back, R.id.ib_shopping,R.id.ll_logo,R.id.ll_select_size})
+    @OnClick({R.id.ib_back, R.id.ib_shopping,R.id.ll_logo,R.id.ll_select_size,R.id.iv_share})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ib_back:
                 GoodsInfoActivity.this.finish();
                 break;
             case R.id.ib_shopping:
+                //进入购物车页面
+
+                isStartMain =  CacheUtils.getBoolean(GoodsInfoActivity.this,"Login");
+
+                if(isStartMain){
+                    //直接进入购物车页面
+                    intent = new Intent(GoodsInfoActivity.this, ShoppingActivity.class);
+                    startActivity(intent);
+                    //没有登陆过
+                }else{
+                    //进入登录页面
+                    intent = new Intent(GoodsInfoActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            case R.id.iv_share:
+                //分享生成二维码
+                //传递商品的url---生成二维码
+
+                Intent intent = new Intent(GoodsInfoActivity.this, QRcodeActivity.class);
+                intent.putExtra("url",BRAND_GOODS_DETAILS_URL + goods_id);
+                startActivity(intent);
+
                 break;
             case R.id.ll_logo:
                 intent = new Intent(GoodsInfoActivity.this, PinPaiActivity.class);
