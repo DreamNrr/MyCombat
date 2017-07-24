@@ -29,6 +29,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import okhttp3.Call;
 
+import static com.example.wzh.mycombat.R.id.discount_price;
 import static com.example.wzh.mycombat.R.id.ll_goods_details_iv;
 import static com.example.wzh.mycombat.R.id.rg_goods_details;
 import static com.example.wzh.mycombat.R.id.tv_buy_know;
@@ -48,7 +49,7 @@ public class GoodsInfoActivity extends BaseActivity {
     TextView tvDesc;
     @InjectView(R.id.iv_share)
     ImageView ivShare;
-    @InjectView(R.id.discount_price)
+    @InjectView(discount_price)
     TextView discountPrice;
     @InjectView(R.id.ll_select_size)
     LinearLayout llSelectSize;
@@ -200,8 +201,14 @@ public class GoodsInfoActivity extends BaseActivity {
                         }
                         //否---跳转登录页面
                         break;
-                    case R.id.rg_buy_cart:
+                    case R.id.rb_buy:
                         //调起支付宝
+                        String jiage = discountPrice.getText().toString().trim();
+                        Log.e("TAA","价格====" + jiage);
+                        Intent intent = new Intent(GoodsInfoActivity.this, PayActivity.class);
+                        intent.putExtra("jiage",jiage);
+                        startActivity(intent);
+
                         break;
                 }
             }

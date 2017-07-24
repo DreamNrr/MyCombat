@@ -116,7 +116,6 @@
                     android:id="@+id/discount_price"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="$389"
                     android:textColor="#40668d"
                     android:textSize="22sp" />
 

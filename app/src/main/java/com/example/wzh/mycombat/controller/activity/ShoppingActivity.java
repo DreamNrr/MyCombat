@@ -1,7 +1,9 @@
 package com.example.wzh.mycombat.controller.activity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -183,7 +185,7 @@ public class ShoppingActivity extends BaseActivity {
             }
 
 
-            @OnClick({R.id.ib_back, R.id.iv_edit, R.id.iv_complete})
+            @OnClick({R.id.ib_back, R.id.iv_edit, R.id.iv_complete,R.id.pay_tv})
             public void onViewClicked(View view) {
                 switch (view.getId()) {
                     case R.id.ib_back:
@@ -196,6 +198,19 @@ public class ShoppingActivity extends BaseActivity {
                     case R.id.iv_complete:
                         //完成的点击事件
                         hideDelete();
+                        break;
+                    case R.id.pay_tv:
+                        //调起支付宝
+                        String s = payFeeTv.getText().toString().trim();
+                        Log.e("TAA","价格===" + s);
+                        if(!TextUtils.isEmpty(s)) {
+                            Intent intent = new Intent(ShoppingActivity.this, PayActivity.class);
+                            intent.putExtra("jiage",s);
+                            startActivity(intent);
+                        }else {
+                            showToast("您还没有选择商品");
+                        }
+
                         break;
                 }
             }

@@ -233,7 +233,7 @@ public class DBAdapter extends BaseAdapter {
     获取总价
      */
     public void showTotalPrice() {
-        payFeeTv.setText("￥" + sum() + "");
+        payFeeTv.setText(sum() + "0");
     }
 
     public double sum() {
