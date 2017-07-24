@@ -2,6 +2,7 @@ package com.example.wzh.mycombat.common;
 
 import android.app.Application;
 
+import com.mob.MobSDK;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.xutils.x;
@@ -34,6 +35,7 @@ public class MyApplication extends Application{
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
 
-//        ShareSDK.initSDK(this);
+        MobSDK.init(this);
+
     }
 }
