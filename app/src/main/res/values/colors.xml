@@ -13,4 +13,9 @@
     <color name="white">#ffffffff</color>
     <color name="login_with_other_plat_text_color">#ff383838</color>
     <color name="dialog_white_bg">#fbfbfb</color>
+
+
+    <color name="nav_head_image_background">#F8668D</color>
+    <color name="nav_head_round_background">#FDC7D6</color>
+    <color name="nav_head_roung_text_background">#FB7BA0</color>
 </resources>
