@@ -193,7 +193,7 @@
             android:value="cd8ad1e54e990e06b61f5965" /> <!-- </>值来自开发者平台取得的AppKey -->
 
         <activity android:name=".controller.activity.QRcodeActivity" />
-        <activity android:name=".controller.activity.PayActivity"></activity>
+        <activity android:name=".controller.activity.PayActivity" />
 
         <!-- alipay sdk begin -->
         <activity
@@ -201,10 +201,10 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <!-- alipay sdk end -->
 
+        <activity android:name=".controller.activity.LivePlayerActivity"></activity>
     </application>
 
 </manifest>
