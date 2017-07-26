@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">呆萌</string>
-
+    <string-array name="sections">
+        <item>@string/section_live</item>
+        <item>@string/section_recommend</item>
+        <item>@string/section_bangumi</item>
+        <item>@string/section_more</item>
+        <item>@string/section_focus</item>
+        <item>@string/section_discover</item>
+    </string-array>
     <string name="userid_found">用户信息已存在，正在跳转登录操作…</string>
     <string name="logining">使用%s帐号登录中…</string>
     <string name="auth_cancel">授权操作已取消</string>

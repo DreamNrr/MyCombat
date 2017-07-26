@@ -2,10 +2,8 @@ package com.example.wzh.mycombat.controller.fragment;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatDelegate;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -34,7 +32,7 @@ public class SelfFragment extends BaseFragment implements NavigationView.OnNavig
     DrawerLayout drawerLayout;
 
 
-    private Fragment mHomePageFragment;
+    private HomePageFragment mHomePageFragment;
 
     //private HomePageFragment mHomePageFragment;
 
@@ -44,7 +42,6 @@ public class SelfFragment extends BaseFragment implements NavigationView.OnNavig
         View view = View.inflate(mContext, R.layout.bilibili_layout, null);
         ButterKnife.inject(this, view);
         navigationView.setItemIconTintList(null);
-
         return view;
     }
 
@@ -86,38 +83,38 @@ public class SelfFragment extends BaseFragment implements NavigationView.OnNavig
         //设置用户名 签名
         mUserName.setText(getResources().getText(R.string.hotbitmapgg));
         mUserSign.setText(getResources().getText(R.string.about_user_head_layout));
-        //设置日夜间模式切换
-        mSwitchMode.setOnClickListener(v -> switchNightMode());
-
-//        boolean flag = CacheUtils.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
-        boolean flag = true;
-        if (flag) {
-            mSwitchMode.setImageResource(R.drawable.ic_switch_daily);
-        } else {
-            mSwitchMode.setImageResource(R.drawable.ic_switch_night);
-        }
+//        //设置日夜间模式切换
+//        mSwitchMode.setOnClickListener(v -> switchNightMode());
+//
+////        boolean flag = CacheUtils.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
+//        boolean flag = true;
+//        if (flag) {
+//            mSwitchMode.setImageResource(R.drawable.ic_switch_daily);
+//        } else {
+//            mSwitchMode.setImageResource(R.drawable.ic_switch_night);
+//        }
     }
 
 
     /**
      * 日夜间模式切换
      */
-    private void switchNightMode() {
-
-        boolean isNight = false;
-       // boolean isNight = CacheUtils.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
-        if (isNight) {
-            // 日间模式
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-           // CacheUtils.putBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
-        } else {
-            // 夜间模式
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-           // CacheUtils.putBoolean(ConstantUtil.SWITCH_MODE_KEY, true);
-        }
-
-        getActivity().recreate();
-    }
+//    private void switchNightMode() {
+//
+//        boolean isNight = false;
+//       // boolean isNight = CacheUtils.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
+//        if (isNight) {
+//            // 日间模式
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//           // CacheUtils.putBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
+//        } else {
+//            // 夜间模式
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//           // CacheUtils.putBoolean(ConstantUtil.SWITCH_MODE_KEY, true);
+//        }
+//
+//        getActivity().recreate();
+//    }
 
 
 
@@ -174,17 +171,17 @@ public class SelfFragment extends BaseFragment implements NavigationView.OnNavig
         return false;
     }
 
-    /**
-     * DrawerLayout侧滑菜单开关
-     */
-    public void toggleDrawer() {
-
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            drawerLayout.openDrawer(GravityCompat.START);
-        }
-    }
+//    /**
+//     * DrawerLayout侧滑菜单开关
+//     */
+//    public void toggleDrawer() {
+//
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        } else {
+//            drawerLayout.openDrawer(GravityCompat.START);
+//        }
+//    }
 
 //    /**
 //     * 监听back键处理DrawerLayout和SearchView

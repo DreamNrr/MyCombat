@@ -186,7 +186,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.self_rb:
                 position = 4;
-                tvTitle.setText("个人");
+                tvTitle.setText("哔哩哔哩");
                 titlebarrl.setVisibility(View.VISIBLE);
                 ibShopping.setVisibility(View.GONE);
                 ibShare.setVisibility(View.GONE);
