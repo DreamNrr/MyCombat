@@ -11,6 +11,7 @@ import com.example.wzh.mycombat.R;
 import com.example.wzh.mycombat.base.BaseFragment;
 import com.example.wzh.mycombat.controller.adapter.LiveAppIndexAdapter;
 import com.example.wzh.mycombat.modle.bean.LiveAppIndexInfo;
+import com.example.wzh.mycombat.utils.SnackbarUtil;
 import com.example.wzh.mycombat.view.CustomEmptyView;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -47,6 +48,7 @@ public class HomeLiveFragment extends BaseFragment {
     public void initData() {
         super.initData();
         getFromNet();
+        initRefreshLayout();
     }
 
 
@@ -59,6 +61,7 @@ public class HomeLiveFragment extends BaseFragment {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         Log.e("TAG", "联网失败==" + e.getMessage());
+                        initEmptyView();
                     }
 
                     @Override
@@ -72,8 +75,10 @@ public class HomeLiveFragment extends BaseFragment {
         LiveAppIndexInfo bean = new Gson().fromJson(response, LiveAppIndexInfo.class);
         mLiveAppIndexAdapter = new LiveAppIndexAdapter(getActivity());
         mLiveAppIndexAdapter.setLiveInfo(bean);
+        finishTask();
+
         recycle.setAdapter(mLiveAppIndexAdapter);
-        GridLayoutManager layout = new GridLayoutManager(getActivity(), 10);
+        GridLayoutManager layout = new GridLayoutManager(getActivity(), 12);
         layout.setOrientation(LinearLayoutManager.VERTICAL);
         layout.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 
@@ -85,6 +90,43 @@ public class HomeLiveFragment extends BaseFragment {
         });
 
         recycle.setLayoutManager(layout);
+    }
+
+    protected void initRefreshLayout() {
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(this::getFromNet);
+        swipeRefreshLayout.post(() -> {
+
+            swipeRefreshLayout.setRefreshing(true);
+            getFromNet();
+        });
+    }
+
+    private void initEmptyView() {
+
+        swipeRefreshLayout.setRefreshing(false);
+        emptyLayout.setVisibility(View.VISIBLE);
+        recycle.setVisibility(View.GONE);
+        emptyLayout.setEmptyImage(R.drawable.img_tips_error_load_error);
+        emptyLayout.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+        SnackbarUtil.showMessage(recycle, "数据加载失败,请重新加载或者检查网络是否链接");
+    }
+
+
+    public void hideEmptyView() {
+
+        emptyLayout.setVisibility(View.GONE);
+        recycle.setVisibility(View.VISIBLE);
+    }
+
+
+    protected void finishTask() {
+
+        hideEmptyView();
+        swipeRefreshLayout.setRefreshing(false);
+        mLiveAppIndexAdapter.notifyDataSetChanged();
+        recycle.scrollToPosition(0);
     }
 
 

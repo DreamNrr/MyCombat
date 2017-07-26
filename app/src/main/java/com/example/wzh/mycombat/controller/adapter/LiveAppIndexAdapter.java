@@ -100,13 +100,13 @@ public class LiveAppIndexAdapter extends RecyclerView.Adapter {
         int viewType = getItemViewType(pos);
         switch (viewType) {
             case TYPE_ENTRANCE:
-                return 2;
+                return 3;
             case TYPE_LIVE_ITEM:
-                return 5;
+                return 6;
             case TYPE_PARTITION:
-                return 10;
+                return 12;
             case TYPE_BANNER:
-                return 10;
+                return 12;
         }
         return 0;
     }
