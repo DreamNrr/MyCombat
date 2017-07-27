@@ -1,6 +1,7 @@
 package com.example.wzh.mycombat.controller.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.wzh.mycombat.R;
+import com.example.wzh.mycombat.controller.activity.LivePlayerActivity;
 import com.example.wzh.mycombat.modle.bean.LiveAppIndexInfo;
 import com.example.wzh.mycombat.view.BannerEntity;
 import com.example.wzh.mycombat.view.BannerView;
@@ -178,10 +180,10 @@ public class LiveAppIndexAdapter extends RecyclerView.Adapter {
             liveItemViewHolder.itemLiveTitle.setText(livesBean.getTitle());
             liveItemViewHolder.itemLiveUser.setText(livesBean.getOwner().getName());
             liveItemViewHolder.itemLiveCount.setText(String.valueOf(livesBean.getOnline()));
-//            liveItemViewHolder.itemLiveLayout.setOnClickListener(v -> LivePlayerActivity.
-//                    launch((Activity) context, livesBean.getRoom_id(),
-//                            livesBean.getTitle(), livesBean.getOnline(), livesBean.getOwner().getFace(),
-//                            livesBean.getOwner().getName(), livesBean.getOwner().getMid()));
+            liveItemViewHolder.itemLiveLayout.setOnClickListener(v -> LivePlayerActivity.
+                    launch((Activity) context, livesBean.getRoom_id(),
+                            livesBean.getTitle(), livesBean.getOnline(), livesBean.getOwner().getFace(),
+                            livesBean.getOwner().getName(), livesBean.getOwner().getMid()));
         } else if (holder instanceof LivePartitionViewHolder) {
 
             LivePartitionViewHolder livePartitionViewHolder = (LivePartitionViewHolder) holder;
